@@ -136,13 +136,6 @@
   .side-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 18px; }
   .side-card .t { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.05em; color: var(--amber-soft); text-transform: uppercase; margin-bottom: 6px; }
   .side-card .d { color: rgba(255,255,255,0.88); font-size: 14.5px; font-weight: 500; }
-  /* ---------------- stat band ---------------- */
-  .stats { padding: 84px 0; border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
-  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
-  .stat { padding: 0 36px; border-left: 1px solid var(--line); }
-  .stat:first-child { padding-left: 0; border-left: none; }
-  .stat .num { font-family: "Space Grotesk", sans-serif; font-size: 52px; font-weight: 600; color: var(--indigo); letter-spacing: -0.02em; }
-  .stat .cap { margin-top: 8px; font-size: 15px; color: var(--ink-soft); max-width: 240px; }
   /* ---------------- friction statement ---------------- */
   .friction { padding: 90px 0; }
   .friction-wrap { max-width: 720px; text-align: center; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
@@ -221,6 +214,7 @@
   .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
   .feat-card { background: var(--paper-white); border: 1px solid var(--line-soft); border-radius: var(--radius-sm); padding: 26px 24px; position: relative; }
   .feat-card h4 { font-size: 17px; margin-bottom: 10px; display: flex; align-items: center; gap: 9px; }
+  .feat-soon { display: inline-block; margin-bottom: 10px; padding: 3px 9px; border-radius: 999px; background: var(--amber-soft); color: var(--indigo-deep); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
   .feat-card p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
   /* ---------------- waitlist ---------------- */
   .waitlist { padding: 40px 0 90px; }
@@ -282,11 +276,8 @@
     .hero-sub { font-size: 16px; }
     .hero-visual-inner { grid-template-columns: 1fr; }
     .hero-visual-side, .client-side { padding: 0 22px 22px; }
-    .stats-grid, .steps, .feat-grid, .mock-shots { grid-template-columns: 1fr; }
+    .steps, .feat-grid, .mock-shots { grid-template-columns: 1fr; }
     .mock-panel { height: auto; }
-    .stat { border-left: none; padding: 0; border-top: 1px solid var(--line); padding-top: 20px; }
-    .stat:first-child { border-top: none; padding-top: 0; }
-    .stat .num { font-size: 40px; }
     .faq-layout { grid-template-columns: 1fr; gap: 30px; }
     .final-cta { margin: 0 16px 60px; padding: 56px 24px; }
     .final-cta h2 { font-size: 28px; }
@@ -414,24 +405,6 @@
         <button type="submit" id="waitlist-submit" class="pill-btn">Join the waitlist</button>
       </form>
       <p id="waitlist-message" class="waitlist-message" role="status" aria-live="polite"></p>
-    </div>
-  </div>
-</section>
-<section class="stats">
-  <div class="wrap">
-    <div class="stats-grid">
-      <div class="stat">
-        <div class="num">3 clicks</div>
-        <div class="cap">from picking a template to a finished, downloadable contract</div>
-      </div>
-      <div class="stat">
-        <div class="num">100%</div>
-        <div class="cap">of your original formatting kept, including bold, italics, and underline, run by run</div>
-      </div>
-      <div class="stat">
-        <div class="num">.docx</div>
-        <div class="cap">real Word files out, every time, never a PDF, never a shared doc link</div>
-      </div>
     </div>
   </div>
 </section>
@@ -653,8 +626,9 @@
         <p>No training, no setup calls. If you can highlight text and click a button, you already know how.</p>
       </div>
       <div class="feat-card">
-        <h4>Draft straight from your inbox</h4>
-        <p>Email a request with the document name in the subject line. A finished draft lands back in your inbox.</p>
+        <div class="feat-soon">Coming soon</div>
+        <h4>Draft straight from your inbox, text message, or Slack</h4>
+        <p>Get a finalized document to send, review, and sign.</p>
       </div>
       <div class="feat-card">
         <h4>Approval rules that run themselves</h4>
