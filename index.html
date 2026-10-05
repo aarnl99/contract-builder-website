@@ -332,7 +332,15 @@
   .intro-scroll.show { opacity: 1; }
   .intro-scroll .chev { font-size: 16px; animation: bob 1.4s ease-in-out infinite; }
   @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+  html.skip-intro .intro-overlay { display: none; }
 </style>
+<script>
+  try {
+    if (localStorage.getItem('rotelyIntroSeen') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('skip-intro');
+    }
+  } catch (e) {}
+</script>
 </head>
 <body>
 <div class="intro-overlay" id="introOverlay">
@@ -371,7 +379,7 @@
       <a href="#waitlist" class="pill-btn js-waitlist-cta"><span class="plus">+</span> Join the waitlist</a>
       <a href="#how" class="pill-btn ghost">See how it works</a>
     </div>
-    <div class="hero-note">Upload your first template in under a minute.</div>
+    <div class="hero-note">Join the waitlist for beta access. Your first template takes under a minute to set up.</div>
     <div class="hero-visual">
       <div class="hero-visual-inner">
         <div class="doc-mock">
@@ -393,21 +401,6 @@
     </div>
   </div>
 </header>
-<section class="waitlist" id="waitlist">
-  <div class="wrap">
-    <div class="waitlist-card">
-      <div class="label" style="margin-bottom:14px;">Waitlist</div>
-      <h2>Join the waitlist</h2>
-      <p class="waitlist-sub">We're in beta and onboarding a limited number of teams. Leave your email and we'll reach out.</p>
-      <form id="waitlist-form" class="waitlist-form" novalidate>
-        <input type="text" name="name" id="waitlist-name" class="waitlist-input" placeholder="Your name (optional)" autocomplete="name" aria-label="Your name (optional)" />
-        <input type="email" name="email" id="waitlist-email" class="waitlist-input" placeholder="you@company.com" autocomplete="email" aria-label="Email address" required />
-        <button type="submit" id="waitlist-submit" class="pill-btn">Join the waitlist</button>
-      </form>
-      <p id="waitlist-message" class="waitlist-message" role="status" aria-live="polite"></p>
-    </div>
-  </div>
-</section>
 <section class="friction">
   <div class="wrap friction-wrap">
     <div class="label">The insight</div>
@@ -422,9 +415,9 @@
     <div class="journey-rail"><div class="journey-node">1</div><div class="journey-rail-line"></div></div>
     <div class="journey-content">
     <div class="section-head">
-      <div class="label">How it works &middot; Draft</div>
+      <div class="label">Step 1 &middot; Draft</div>
       <h2>Upload once. Draft <em>a hundred</em>.</h2>
-      <p>Three steps, no re-typing, everything below happens in the browser with nothing to install and nothing to configure.</p>
+      <p>Three steps, no retyping. Everything happens in the browser, with nothing to install or configure.</p>
     </div>
     <div class="steps">
       <div class="step">
@@ -448,7 +441,7 @@
     <div class="journey-rail"><div class="journey-node">2</div><div class="journey-rail-line"></div></div>
     <div class="journey-content">
     <div class="section-head">
-      <div class="label">In-document editing &middot; Edit</div>
+      <div class="label">Step 2 &middot; Edit</div>
       <h2>Click into it. Edit it like a person, not a form.</h2>
       <p>Insert a sentence, fix a typo, swap a clause, right in the document itself. Stage as many changes as you want and watch every one of them land in place before you save anything.</p>
     </div>
@@ -477,9 +470,9 @@
     <div class="journey-rail"><div class="journey-node">3</div><div class="journey-rail-line"></div></div>
     <div class="journey-content">
     <div class="section-head">
-      <div class="label">Redlining &middot; Redline</div>
+      <div class="label">Step 3 &middot; Redline</div>
       <h2>Send it out. Only see the changes that matter.</h2>
-      <p>Every drafted contract can be shared for review, no account needed on their end, and you decide ahead of time what's worth your attention.</p>
+      <p>Every drafted contract can be shared for review, and you decide ahead of time what's worth your attention.</p>
     </div>
     <div class="steps">
       <div class="step">
@@ -492,7 +485,7 @@
       </div>
       <div class="step">
         <h3>Review</h3>
-        <p>Every redline reaches you, shown against your threshold. Approve it, or send a revision back.</p>
+        <p>Every redline reaches you. Changes inside your threshold are auto-accepted. Anything outside it waits for you to approve, counter, or send back.</p>
       </div>
     </div>
     <div class="mock-shots">
@@ -565,9 +558,9 @@
     <div class="journey-rail"><div class="journey-node">4</div><div class="journey-rail-line"></div></div>
     <div class="journey-content">
     <div class="section-head">
-      <div class="label">Signing &middot; Sign</div>
+      <div class="label">Step 4 &middot; Sign</div>
       <h2>Agree on it. Sign it. Same tab.</h2>
-      <p>The moment everyone's aligned, send the contract out for signature without leaving the document. No separate app, no new link for your client to open, no export.</p>
+      <p>The moment everyone's aligned, send the contract out for signature without leaving the document. No separate tool or export needed. Truly end-to-end, in one platform.</p>
     </div>
     <div class="mock-shots">
       <div class="mock-shot">
@@ -627,13 +620,28 @@
       </div>
       <div class="feat-card">
         <div class="feat-soon">Coming soon</div>
-        <h4>Draft straight from your inbox, text message, or Slack</h4>
-        <p>Get a finalized document to send, review, and sign.</p>
+        <h4>Draft straight from your inbox, a text message, or Slack</h4>
+        <p>Send a client name and a fee, and get a ready-to-send contract back, without opening a browser.</p>
       </div>
       <div class="feat-card">
         <h4>Approval rules that run themselves</h4>
-        <p>Set a threshold once, like an acceptable range for payment terms, and routine redlines clear themselves before you ever open the document.</p>
+        <p>Set a threshold once, like an acceptable range for payment terms, and redlines that fall inside it are auto-accepted. You still see every one, but only the ones outside your range need a decision.</p>
       </div>
+    </div>
+  </div>
+</section>
+<section class="waitlist" id="waitlist">
+  <div class="wrap">
+    <div class="waitlist-card">
+      <div class="label" style="margin-bottom:14px;">Waitlist</div>
+      <h2>Join the waitlist</h2>
+      <p class="waitlist-sub">We're in beta and onboarding a limited number of teams. Leave your email and we'll reach out.</p>
+      <form id="waitlist-form" class="waitlist-form" novalidate>
+        <input type="text" name="name" id="waitlist-name" class="waitlist-input" placeholder="Your name (optional)" autocomplete="name" aria-label="Your name (optional)" />
+        <input type="email" name="email" id="waitlist-email" class="waitlist-input" placeholder="you@company.com" autocomplete="email" aria-label="Email address" required />
+        <button type="submit" id="waitlist-submit" class="pill-btn">Join the waitlist</button>
+      </form>
+      <p id="waitlist-message" class="waitlist-message" role="status" aria-live="polite"></p>
     </div>
   </div>
 </section>
@@ -643,7 +651,7 @@
       <div class="section-head" style="margin-bottom:0;">
         <div class="label">FAQ</div>
         <h2>Questions, answered</h2>
-        <p>Can't find what you're looking for? Reach out and we'll get back to you.</p>
+        <p>Can't find what you're looking for? <a href="mailto:closeit@rotely.ai">Reach out</a> and we'll get back to you.</p>
       </div>
       <div class="faq-list">
         <div class="faq-item open">
@@ -656,7 +664,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-q"><span class="qtext">Do signature blocks in the document render correctly?</span><span class="icon">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner">Yes. Signature blocks built as tables, the most common way contracts lay them out, are fully rendered and markable in every draft, on top of Rotely's own built-in e-signature step.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes. Signature blocks built as tables, the most common way contracts lay them out, are fully rendered and markable in every draft, and they work alongside Rotely's built-in e-signing.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q"><span class="qtext">What happens to my documents?</span><span class="icon">+</span></button>
@@ -664,11 +672,11 @@
         </div>
         <div class="faq-item">
           <button class="faq-q"><span class="qtext">Can I sign contracts in Rotely?</span><span class="icon">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner">Yes, right from the document once everyone's agreed on the terms. No separate app, filed on the same timeline as the draft and every redline before it.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes. Once everyone's agreed on the terms, send it for signature right from the document. No separate tool needed, and the signed copy is filed on the same timeline as the draft and every redline before it.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q"><span class="qtext">Can I edit a draft after it's generated?</span><span class="icon">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner">Yes, click into the document to edit or insert text directly, staging as many changes as you like before saving them all at once. Or download the .docx and edit it in Word like normal.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes. Click into the document to edit or insert text directly, staging as many changes as you like before saving them all at once. Or download the .docx and edit it in Word like normal.</div></div>
         </div>
       </div>
     </div>
@@ -712,7 +720,9 @@
     });
   });
   const introOverlay = document.getElementById('introOverlay');
-  if (introOverlay) {
+  if (introOverlay && document.documentElement.classList.contains('skip-intro')) {
+    introOverlay.remove();
+  } else if (introOverlay) {
     const introLines = introOverlay.querySelectorAll('.intro-line');
     const introScroll = document.getElementById('introScroll');
     const scrollLockY = window.scrollY || 0;
@@ -746,6 +756,7 @@
         } else {
           introScroll.classList.add('show');
           armDismiss();
+          setTimeout(finishIntro, 1200);
         }
       }
       setTimeout(step, 350);
@@ -753,6 +764,7 @@
     function finishIntro() {
       if (!introActive) return;
       introActive = false;
+      try { localStorage.setItem('rotelyIntroSeen', '1'); } catch (e) {}
       introOverlay.classList.add('done');
       document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
