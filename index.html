@@ -36,7 +36,7 @@
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  #how, #edit, #redline, #signing, #features, #waitlist, #faq { scroll-margin-top: 84px; }
+  #how, #edit, #redline, #signing, #ai, #features, #faq { scroll-margin-top: 84px; }
   body {
     margin: 0;
     background: var(--cream);
@@ -170,6 +170,7 @@
   .journey-section:last-of-type .journey-rail-line { display: none; }
   .section-head { max-width: 640px; margin-bottom: 52px; }
   .section-head .label { margin-bottom: 18px; }
+  .section-head > h2:first-child { margin-top: 0; }
   .section-head h2 { font-size: 46px; }
   .section-head h2 em { color: var(--ink-soft); }
   .section-head p { margin-top: 16px; font-size: 17px; color: var(--ink-soft); line-height: 1.6; }
@@ -213,7 +214,28 @@
   .sig-tag.pending { color: var(--ink-soft); background: var(--chip); }
   /* ---------------- features ---------------- */
   .features { padding: 40px 0 110px; }
-  .feat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  /* ---------------- AI ---------------- */
+  .ai-section { padding: 40px 0 100px; }
+  .ai-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .ai-card { background: var(--paper-white); border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 28px 26px; display: flex; flex-direction: column; }
+  .ai-card h4 { font-size: 21px; margin-bottom: 10px; }
+  .ai-card > p { font-size: 15px; color: var(--ink-soft); line-height: 1.6; }
+  .ai-card .ai-counter { margin-top: auto; }
+  .ai-card > p { margin-bottom: 18px; }
+  .ai-card .ai-counter { padding: 16px 18px; }
+  .ai-card .ai-counter-value { margin-top: 8px; line-height: 1.25; }
+  .ai-card .ai-counter-why { margin-top: 6px; }
+  .ai-card .ai-counter-top + .ai-counter-value { margin-top: 6px; }
+  .ai-card .ai-sum-row { margin-top: 10px; padding-top: 10px; }
+  .ai-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 8px; }
+  .ai-head .ai-counter-value { margin-top: 0; }
+  .ai-tag { display: inline-block; align-self: flex-start; margin-bottom: 12px; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .ai-sum-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12.5px; color: var(--ink-soft); padding-top: 8px; margin-top: 8px; border-top: 1px solid var(--line-soft); }
+  .ai-sum-row .mini-pill { padding: 2px 9px; font-size: 11px; }
+  .ai-trust { margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .ai-trust div { padding-left: 16px; border-left: 1px solid var(--ink); font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; }
+  .ai-trust b { display: block; font-family: var(--serif); font-weight: 500; font-size: 18px; color: var(--ink); margin-bottom: 4px; }
   .ai-counter { margin-top: 12px; background: var(--cream-2); border: 1px solid var(--line-soft); border-radius: 10px; padding: 12px 14px; font-family: "Inter", sans-serif; }
   .ai-counter-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
   .ai-counter-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
@@ -224,11 +246,31 @@
   .feat-soon { display: inline-block; margin-bottom: 12px; padding: 3px 11px; border-radius: 999px; background: var(--paper-white); border: 1px solid var(--line); color: var(--ink-soft); font-size: 12.5px; font-weight: 500; }
   .feat-card p { font-size: 15px; color: var(--ink-soft); line-height: 1.6; }
   /* ---------------- waitlist ---------------- */
-  .waitlist { padding: 40px 0 90px; }
-  .waitlist-card { background: var(--cream-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 52px 44px; text-align: center; max-width: 820px; margin: 0 auto; }
-  .waitlist-card h2 { font-size: 44px; }
-  .waitlist-sub { max-width: 520px; margin: 14px auto 0; font-size: 16.5px; line-height: 1.6; color: var(--ink-soft); }
-  .waitlist-form { display: flex; gap: 10px; margin: 30px auto 0; max-width: 640px; }
+  .waitlist-modal {
+    position: fixed; inset: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: center; padding: 20px;
+    background: rgba(28,27,25,0.32); backdrop-filter: blur(4px);
+    opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility 0s linear .2s;
+  }
+  .waitlist-modal.open, .waitlist-modal:target { opacity: 1; visibility: visible; transition: opacity .2s ease; }
+  .waitlist-card {
+    position: relative; width: 100%; max-width: 480px; max-height: calc(100vh - 40px); overflow-y: auto;
+    background: var(--paper-white); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 44px 36px 36px; text-align: center;
+    box-shadow: 0 24px 60px rgba(28,27,25,0.16);
+    transform: translateY(12px) scale(.98); transition: transform .2s ease;
+  }
+  .waitlist-modal.open .waitlist-card, .waitlist-modal:target .waitlist-card { transform: none; }
+  .waitlist-close {
+    position: absolute; top: 12px; right: 12px; width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    border: none; border-radius: 8px; background: none; cursor: pointer;
+    font-family: "Inter", sans-serif; font-size: 22px; font-weight: 300; line-height: 1; color: var(--muted); text-decoration: none;
+  }
+  .waitlist-close:hover { background: var(--cream-2); color: var(--ink); }
+  .waitlist-card h2 { font-size: 36px; }
+  .waitlist-sub { max-width: 380px; margin: 12px auto 0; font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); }
+  .waitlist-form { display: flex; flex-direction: column; gap: 10px; margin: 26px auto 0; }
   .waitlist-input {
     flex: 1; min-width: 0;
     font-family: inherit; font-size: 15px; color: var(--ink);
@@ -282,7 +324,8 @@
     .hero-sub { font-size: 16px; }
     .hero-visual-inner { grid-template-columns: 1fr; }
     .hero-visual-side, .client-side { padding: 0 22px 22px; }
-    .steps, .feat-grid, .mock-shots { grid-template-columns: 1fr; }
+    .steps, .feat-grid, .mock-shots, .ai-grid, .ai-trust { grid-template-columns: 1fr; }
+    .ai-section { padding: 24px 0 64px; }
     .mock-panel { min-height: 0; }
     .faq-layout { grid-template-columns: 1fr; gap: 30px; }
     .final-cta { margin: 0 16px 60px; padding: 56px 24px; }
@@ -297,11 +340,8 @@
     .journey-node { width: 30px; height: 30px; font-size: 14px; }
     .intro-line { font-size: min(12vw, 64px); }
     .intro-scroll { bottom: 28px; }
-    .waitlist { padding: 24px 0 64px; }
-    .waitlist-card { padding: 36px 22px; }
-    .waitlist-card h2 { font-size: 34px; }
-    .waitlist-form { flex-direction: column; }
-    .waitlist-form .pill-btn { width: 100%; }
+    .waitlist-card { padding: 40px 22px 26px; }
+    .waitlist-card h2 { font-size: 30px; }
     .hero-actions { flex-wrap: wrap; gap: 10px; }
     .hero-actions .pill-btn { width: 100%; justify-content: center; }
     .final-cta .hero-actions .pill-btn { width: auto; }
@@ -342,11 +382,13 @@
   html.skip-intro .intro-overlay { display: none; }
 </style>
 <script>
-  try {
-    if (localStorage.getItem('rotelyIntroSeen') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.documentElement.classList.add('skip-intro');
-    }
-  } catch (e) {}
+  // Every load starts fresh at the top: no remembered scroll position or hash jump.
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.rotelyOpenWaitlist = location.hash === '#waitlist';
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('skip-intro');
+  }
 </script>
 </head>
 <body>
@@ -367,6 +409,7 @@
       <a href="#how">How it works</a>
       <a href="#redline">Redlining</a>
       <a href="#signing">Signing</a>
+      <a href="#ai">AI</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="nav-cta">
@@ -419,7 +462,6 @@
     <div class="journey-rail"><div class="journey-node">1</div><div class="journey-rail-line"></div></div>
     <div class="journey-content">
     <div class="section-head">
-      <div class="label">Step 1 &middot; Draft</div>
       <h2>Upload once. Draft a hundred.</h2>
       <p>Three steps, no retyping. Everything happens in the browser, with nothing to install or configure.</p>
     </div>
@@ -445,7 +487,6 @@
     <div class="journey-rail"><div class="journey-node">2</div><div class="journey-rail-line"></div></div>
     <div class="journey-content">
     <div class="section-head">
-      <div class="label">Step 2 &middot; Edit</div>
       <h2>Click into it. Edit it like a person, not a form.</h2>
       <p>Insert a sentence, fix a typo, swap a clause, right in the document itself. Stage as many changes as you want and watch every one of them land in place before you save anything.</p>
     </div>
@@ -474,7 +515,6 @@
     <div class="journey-rail"><div class="journey-node">3</div><div class="journey-rail-line"></div></div>
     <div class="journey-content">
     <div class="section-head">
-      <div class="label">Step 3 &middot; Redline</div>
       <h2>Send it out. Only see the changes that matter.</h2>
       <p>Every drafted contract can be shared for review, and you decide ahead of time what's worth your attention.</p>
     </div>
@@ -567,9 +607,8 @@
     <div class="journey-rail"><div class="journey-node">4</div><div class="journey-rail-line"></div></div>
     <div class="journey-content">
     <div class="section-head">
-      <div class="label">Step 4 &middot; Sign</div>
       <h2>Agree on it. Sign it. Same tab.</h2>
-      <p>The moment everyone's aligned, send the contract out for signature without leaving the document. No separate tool or export needed. Need to know who&rsquo;s signing? Turn on selfie and ID verification, built right into the same signing flow.</p>
+      <p>The moment everyone's aligned, send the contract out for signature without leaving the document. No separate tool or export needed. Signatures are collected through a dedicated e-signature service, so every one is legally binding and backed by a full audit trail. Need to know who&rsquo;s signing? Turn on selfie and ID verification, built right into the same signing flow.</p>
     </div>
     <div class="mock-shots">
       <div class="mock-shot">
@@ -588,7 +627,7 @@
         </div>
         <div class="shot-takeaway">
           <h4>One click, right from the document</h4>
-          <p>The version everyone negotiated is exactly the version that gets signed. Nothing to re-upload, nothing to double-check.</p>
+          <p>The version everyone negotiated is exactly the version that gets signed. Set a signing order if it matters, and Rotely emails each signer when it&rsquo;s their turn and nudges anyone who&rsquo;s waiting.</p>
         </div>
       </div>
       <div class="mock-shot">
@@ -607,7 +646,7 @@
         </div>
         <div class="shot-takeaway">
           <h4>One record, start to finish</h4>
-          <p>Every signer can be verified with a photo ID and a selfie before they sign, with no third-party identity service needed. Once everyone's signed, the finished copy and verification record land on the same timeline as the draft and every redline before it.</p>
+          <p>Every signature comes with a timestamped record of who signed and when. Signers can also confirm who they are with a photo ID and a selfie, with no third-party identity service needed. The signed copy, the signing record and the ID photos land on the same timeline as the draft and every redline before it.</p>
         </div>
       </div>
     </div>
@@ -615,39 +654,102 @@
   </div>
 </section>
 </div>
+<section class="ai-section" id="ai">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">AI in Rotely</div>
+      <h2>AI that reads the fine print, so you don&rsquo;t have to.</h2>
+      <p>Rotely uses AI where the slow reading happens: turning a request into a draft, weighing a client&rsquo;s redlines, and catching the dates buried in a signed contract. It suggests. You decide.</p>
+    </div>
+    <div class="ai-grid">
+      <div class="ai-card">
+        <span class="ai-tag">Drafting</span>
+        <h4>Draft from an email or your notes</h4>
+        <p>Paste a client&rsquo;s email or a few lines of notes, or forward the email to your personal drafting address. Rotely picks the right master document and fills in the fields it can find. You check every one before anything is created.</p>
+        <div class="ai-counter">
+          <div class="ai-counter-label">AI suggestion</div>
+          <div class="ai-counter-value">Services Agreement</div>
+          <div class="ai-counter-why">Filled 6 of 7 fields from the email. The payment term was left for you.</div>
+        </div>
+      </div>
+      <div class="ai-card">
+        <span class="ai-tag">Negotiating</span>
+        <h4>Counters that sound like you</h4>
+        <p>When a redline lands outside your range, Rotely suggests a counter based on how you&rsquo;ve countered similar asks before, and it never goes past the guardrails you set. Use it, tweak it, or write your own.</p>
+        <div class="ai-counter">
+          <div class="ai-counter-top"><span class="ai-counter-label">Suggested counter</span><span class="mini-pill">Use 10%</span></div>
+          <div class="ai-counter-value">10%</div>
+          <div class="ai-counter-why">You&rsquo;ve countered 3 of your last 4 discount requests at 10%, and it&rsquo;s the top of your guardrail.</div>
+        </div>
+      </div>
+      <div class="ai-card">
+        <span class="ai-tag">Reviewing</span>
+        <h4>A plain-English summary of every round</h4>
+        <p>When a client sends back a stack of changes, get a one-click summary that sorts them into what&rsquo;s routine, what needs a closer look, and what&rsquo;s worth a lawyer&rsquo;s eye.</p>
+        <div class="ai-counter">
+          <div class="ai-counter-label">AI summary</div>
+          <div class="ai-counter-value">5 changes, 1 for a lawyer</div>
+          <div class="ai-sum-row"><span>Entity name corrected to LLC</span><span class="mini-pill">Routine</span></div>
+          <div class="ai-sum-row"><span>Liability cap raised to 2&times; fees</span><span class="mini-pill accent">Lawyer&rsquo;s eye</span></div>
+        </div>
+      </div>
+      <div class="ai-card">
+        <span class="ai-tag">Tracking</span>
+        <h4>Renewal dates, pulled from the contract</h4>
+        <p>Rotely reads a contract for its end date, whether it auto-renews, and the renewal terms, then asks you to confirm. Anything ending in the next 90 days shows up at the top of your documents.</p>
+        <div class="ai-counter">
+          <div class="ai-counter-label">Renewing soon</div>
+          <div class="ai-head"><div class="ai-counter-value">Swift Enterprises MSA</div><span class="mini-pill">38 days left</span></div>
+          <div class="ai-sum-row"><span>Ends Dec 1, 2026</span><span>Auto-renews for 12 months</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="ai-trust">
+      <div><b>Always a draft</b>Every AI suggestion is editable, and nothing is sent until you press send.</div>
+      <div><b>Knows its limits</b>Changes to liability, ownership or termination are flagged for a lawyer, never countered automatically.</div>
+      <div><b>Your data stays yours</b>Your documents are private to your account and never used to train any model.</div>
+    </div>
+  </div>
+</section>
 <section class="features" id="features">
   <div class="wrap">
     <div class="section-head">
-      <div class="label">Features</div>
-      <h2>A few more things worth knowing</h2>
-      <p>Everything above is the core loop. These are the details that make it hold up in practice.</p>
+      <h2>Features</h2>
+      <p>A few more things worth knowing.</p>
     </div>
     <div class="feat-grid">
       <div class="feat-card">
-        <h4>Dead simple to use</h4>
-        <p>No training, no setup calls. If you can highlight text and click a button, you already know how.</p>
+        <h4>Instant use</h4>
+        <p>No training, no setup calls, nothing to install. Upload a .docx and your first template is ready in under a minute.</p>
       </div>
       <div class="feat-card">
-        <div class="feat-soon">Coming soon</div>
-        <h4>Draft straight from your inbox, a text message, or Slack</h4>
-        <p>Send a client name and a fee, and get a ready-to-send contract back, without opening a browser.</p>
+        <h4>Self-running approvals</h4>
+        <p>Set a rule once per field: a range, a list of approved values, or always flag. Redlines inside the rule are auto-accepted, so only the real asks need you.</p>
       </div>
       <div class="feat-card">
-        <h4>Approval rules that run themselves</h4>
-        <p>Set a threshold once, like an acceptable range for payment terms, and redlines that fall inside it are auto-accepted. You still see every one, but only the ones outside your range need a decision.</p>
+        <h4>Legally binding e-signatures</h4>
+        <p>Every contract is signed through a dedicated e-signature service, with a timestamped record of who signed and when.</p>
       </div>
       <div class="feat-card">
-        <h4>Counters that sound like you</h4>
-        <p>When a redline lands outside your range, an LLM drafts a counter for you. It looks at how you&rsquo;ve countered similar asks before and never goes past the guardrails you set. You review it, tweak it if you want, and send.</p>
+        <h4>Built-in ID and selfie checks</h4>
+        <p>Signers confirm who they are with a photo ID and a selfie before signing. No separate verification service to pay for.</p>
+      </div>
+      <div class="feat-card">
+        <h4>Signing order and reminders</h4>
+        <p>Choose who signs first. Each signer is emailed when it&rsquo;s their turn, and anyone who&rsquo;s waiting gets a nudge.</p>
+      </div>
+      <div class="feat-card">
+        <h4>Comment threads on every redline</h4>
+        <p>Talk through a change right next to it, with your client, until it&rsquo;s resolved. No side email threads.</p>
       </div>
     </div>
   </div>
 </section>
-<section class="waitlist" id="waitlist">
-  <div class="wrap">
+<div class="waitlist-modal" id="waitlist" role="dialog" aria-modal="true" aria-labelledby="waitlist-title" aria-hidden="true">
     <div class="waitlist-card">
+      <a href="#" class="waitlist-close" id="waitlist-close" aria-label="Close">&times;</a>
       <div class="label" style="margin-bottom:14px;">Waitlist</div>
-      <h2>Join the waitlist</h2>
+      <h2 id="waitlist-title">Join the waitlist</h2>
       <p class="waitlist-sub">We're in beta and onboarding a limited number of teams. Leave your email and we'll reach out.</p>
       <form id="waitlist-form" class="waitlist-form" novalidate>
         <input type="text" name="name" id="waitlist-name" class="waitlist-input" placeholder="Your name (optional)" autocomplete="name" aria-label="Your name (optional)" />
@@ -656,8 +758,7 @@
       </form>
       <p id="waitlist-message" class="waitlist-message" role="status" aria-live="polite"></p>
     </div>
-  </div>
-</section>
+</div>
 <section class="faq" id="faq">
   <div class="wrap">
     <div class="faq-layout">
@@ -680,12 +781,20 @@
           <div class="faq-a"><div class="faq-a-inner">Yes. Signature blocks built as tables, the most common way contracts lay them out, are fully rendered and markable in every draft, and they work alongside Rotely's built-in e-signing.</div></div>
         </div>
         <div class="faq-item">
+          <button class="faq-q"><span class="qtext">What does the AI actually do?</span><span class="icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner">It drafts from an email or your notes, suggests counters inside your guardrails, summarizes a round of redlines, and pulls renewal dates out of a contract. Every suggestion is a draft you review first, and changes to sensitive clauses like liability or termination are flagged for a lawyer rather than countered.</div></div>
+        </div>
+        <div class="faq-item">
           <button class="faq-q"><span class="qtext">What happens to my documents?</span><span class="icon">+</span></button>
           <div class="faq-a"><div class="faq-a-inner">Your master documents and drafts are private to your account. Nobody else on Rotely can see them, and nothing is used to train any model.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q"><span class="qtext">Can I sign contracts in Rotely?</span><span class="icon">+</span></button>
           <div class="faq-a"><div class="faq-a-inner">Yes. Once everyone's agreed on the terms, send it for signature right from the document. No separate tool needed, and the signed copy is filed on the same timeline as the draft and every redline before it.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span class="qtext">Are signatures legally binding?</span><span class="icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner">Yes. Rotely collects signatures through a dedicated e-signature service, so every contract signed in Rotely is a legally binding electronic signature. Each one comes with a timestamped record of who signed and when, the kind of evidence you&rsquo;d need if a signature were ever questioned.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q"><span class="qtext">Can I verify who's signing?</span><span class="icon">+</span></button>
@@ -719,6 +828,7 @@
         <a href="#edit">Editing</a>
         <a href="#redline">Redlining</a>
         <a href="#signing">Signing</a>
+        <a href="#ai">AI</a>
         <a href="#features">Features</a>
         <a href="#faq">FAQ</a>
         <a href="https://userotely.com/#/">Log in</a>
@@ -742,7 +852,7 @@
   } else if (introOverlay) {
     const introLines = introOverlay.querySelectorAll('.intro-line');
     const introScroll = document.getElementById('introScroll');
-    const scrollLockY = window.scrollY || 0;
+    window.scrollTo(0, 0);
     let introActive = true;
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
@@ -781,11 +891,10 @@
     function finishIntro() {
       if (!introActive) return;
       introActive = false;
-      try { localStorage.setItem('rotelyIntroSeen', '1'); } catch (e) {}
       introOverlay.classList.add('done');
       document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
-      window.scrollTo(0, scrollLockY);
+      window.scrollTo(0, 0);
       if (introOverlay._cleanupDismiss) introOverlay._cleanupDismiss();
     }
     introOverlay.addEventListener('click', finishIntro);
@@ -815,19 +924,36 @@
   }
 </script>
 <script>
-  document.querySelectorAll('.js-waitlist-cta').forEach(cta => {
-    cta.addEventListener('click', (e) => {
-      const target = document.getElementById('waitlist');
-      if (!target) return;
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  (function () {
+    const modal = document.getElementById('waitlist');
+    if (!modal) return;
+    const closeBtn = document.getElementById('waitlist-close');
+    let lastFocus = null;
+    function openWaitlist() {
+      lastFocus = document.activeElement;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
       const form = document.getElementById('waitlist-form');
       const email = document.getElementById('waitlist-email');
-      if (email && form && form.style.display !== 'none') {
-        setTimeout(() => email.focus({ preventScroll: true }), 500);
-      }
+      const focusEl = form && form.style.display !== 'none' ? email : closeBtn;
+      if (focusEl) setTimeout(() => focusEl.focus({ preventScroll: true }), 60);
+    }
+    function closeWaitlist() {
+      if (!modal.classList.contains('open')) return;
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+    }
+    document.querySelectorAll('.js-waitlist-cta').forEach(cta => {
+      cta.addEventListener('click', (e) => { e.preventDefault(); openWaitlist(); });
     });
-  });
+    closeBtn.addEventListener('click', (e) => { e.preventDefault(); closeWaitlist(); });
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeWaitlist(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeWaitlist(); });
+    if (window.rotelyOpenWaitlist) openWaitlist();
+  })();
 </script>
 <script>
 (function () {
