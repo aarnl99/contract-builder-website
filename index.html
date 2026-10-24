@@ -181,10 +181,11 @@
   /* ---------------- mock shot pairs (redlining / signing) ---------------- */
   .mock-shots { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 52px; }
   .mock-shot .shot-label { font-family: var(--serif); font-weight: 500; font-size: 21px; margin-bottom: 14px; }
-  .mock-panel { border-radius: var(--radius); background: var(--cream-2); border: 1px solid var(--line); overflow: hidden; height: 480px; }
+  .mock-shot { display: flex; flex-direction: column; }
+  .mock-panel { border-radius: var(--radius); background: var(--cream-2); border: 1px solid var(--line); overflow: hidden; min-height: 480px; flex: 1; display: flex; flex-direction: column; }
   .mock-panel .doc-mock { margin: 22px; }
-  .mock-panel .hero-visual-inner { height: 100%; align-items: center; }
-  .mock-panel > .doc-mock { height: calc(100% - 44px); display: flex; flex-direction: column; justify-content: center; }
+  .mock-panel .hero-visual-inner { flex: 1; align-items: center; }
+  .mock-panel > .doc-mock { flex: 1; display: flex; flex-direction: column; justify-content: center; }
   .redline-del { text-decoration: line-through; color: var(--del); }
   .redline-ins { color: var(--ok); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; margin-left: 4px; }
   .comment-chip { display: inline-block; font-family: var(--serif); font-style: italic; font-size: 13.5px; color: var(--ink-soft); background: var(--cream-2); border: 1px solid var(--line-soft); border-radius: 8px; padding: 4px 10px; margin: 6px 0 14px; }
@@ -283,7 +284,7 @@
     .hero-visual-inner { grid-template-columns: 1fr; }
     .hero-visual-side, .client-side { padding: 0 22px 22px; }
     .steps, .feat-grid, .mock-shots { grid-template-columns: 1fr; }
-    .mock-panel { height: auto; }
+    .mock-panel { min-height: 0; }
     .faq-layout { grid-template-columns: 1fr; gap: 30px; }
     .final-cta { margin: 0 16px 60px; padding: 56px 24px; }
     .final-cta h2 { font-size: 34px; }
