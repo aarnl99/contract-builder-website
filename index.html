@@ -36,7 +36,7 @@
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  #how, #edit, #redline, #signing, #ai, #features, #faq { scroll-margin-top: 84px; }
+  #how, #edit, #redline, #signing, #ai, #features, #pricing, #faq { scroll-margin-top: 84px; }
   body {
     margin: 0;
     background: var(--cream);
@@ -245,6 +245,34 @@
   .feat-card h4 { font-size: 21px; margin-bottom: 10px; }
   .feat-soon { display: inline-block; margin-bottom: 12px; padding: 3px 11px; border-radius: 999px; background: var(--paper-white); border: 1px solid var(--line); color: var(--ink-soft); font-size: 12.5px; font-weight: 500; }
   .feat-card p { font-size: 15px; color: var(--ink-soft); line-height: 1.6; }
+  /* ---------------- pricing ---------------- */
+  .pricing { padding: 40px 0 110px; }
+  .price-toggle { display: inline-flex; gap: 4px; padding: 4px; margin-bottom: 28px; background: var(--cream-2); border: 1px solid var(--line); border-radius: 999px; }
+  .price-toggle button { font-family: inherit; font-size: 14px; font-weight: 500; color: var(--ink-soft); background: none; border: none; border-radius: 999px; padding: 8px 18px; cursor: pointer; transition: background .15s, color .15s; }
+  .price-toggle button[aria-pressed="true"] { background: var(--paper-white); color: var(--ink); box-shadow: 0 1px 2px rgba(28,27,25,0.08); }
+  .price-toggle .save { font-size: 12px; color: var(--ok); margin-left: 4px; }
+  .price-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; align-items: stretch; }
+  .price-card { background: var(--paper-white); border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 28px 24px; display: flex; flex-direction: column; position: relative; }
+  .price-card.featured { border-color: var(--ink); }
+  .price-badge { position: absolute; top: -12px; left: 24px; background: var(--ink); color: var(--paper-white); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 4px 11px; border-radius: 999px; }
+  .price-card h4 { font-size: 22px; }
+  .price-for { font-size: 14px; color: var(--muted); margin-top: 6px; line-height: 1.5; min-height: 42px; }
+  .price-amount { margin-top: 20px; display: flex; align-items: baseline; gap: 6px; }
+  .price-amount .num { font-family: var(--serif); font-size: 44px; line-height: 1; letter-spacing: -0.02em; }
+  .price-amount .per { font-size: 14px; color: var(--muted); }
+  .price-note { font-size: 13px; color: var(--muted); margin-top: 8px; min-height: 20px; }
+  .price-list { list-style: none; padding: 20px 0 0; margin: 20px 0 24px; border-top: 1px solid var(--line-soft); display: flex; flex-direction: column; gap: 11px; font-size: 14.5px; color: var(--ink-soft); line-height: 1.45; }
+  .price-list li { padding-left: 22px; position: relative; }
+  .price-list li::before { content: "\2713"; position: absolute; left: 0; color: var(--ok); font-weight: 600; }
+  .price-list li.no::before { content: "\2013"; color: var(--muted); }
+  .price-list b { color: var(--ink); font-weight: 600; }
+  .price-card .pill-btn { margin-top: auto; justify-content: center; }
+  .price-teams { margin-top: 20px; background: var(--cream-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .price-teams h4 { font-size: 21px; margin-bottom: 4px; }
+  .price-teams p { font-size: 15px; color: var(--ink-soft); line-height: 1.55; }
+  .price-defs { margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .price-defs div { padding-left: 16px; border-left: 1px solid var(--ink); font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; }
+  .price-defs b { display: block; font-family: var(--serif); font-weight: 500; font-size: 18px; color: var(--ink); margin-bottom: 4px; }
   /* ---------------- waitlist ---------------- */
   .waitlist-modal {
     position: fixed; inset: 0; z-index: 200;
@@ -324,7 +352,11 @@
     .hero-sub { font-size: 16px; }
     .hero-visual-inner { grid-template-columns: 1fr; }
     .hero-visual-side, .client-side { padding: 0 22px 22px; }
-    .steps, .feat-grid, .mock-shots, .ai-grid, .ai-trust { grid-template-columns: 1fr; }
+    .steps, .feat-grid, .mock-shots, .ai-grid, .ai-trust, .price-defs { grid-template-columns: 1fr; }
+    .price-grid { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
+    .price-for, .price-note { min-height: 0; }
+    .pricing { padding: 24px 0 64px; }
+    .price-teams { flex-direction: column; align-items: flex-start; }
     .ai-section { padding: 24px 0 64px; }
     .mock-panel { min-height: 0; }
     .faq-layout { grid-template-columns: 1fr; gap: 30px; }
@@ -357,7 +389,9 @@
     .doc-mock { padding: 22px 20px; font-size: 14px; }
     .feat-grid { gap: 14px; }
     .intro-line { font-size: min(14vw, 48px); }
-    .ai-card, .feat-card { padding: 24px 20px; }
+    .ai-card, .feat-card, .price-card { padding: 24px 20px; }
+    .price-grid { grid-template-columns: 1fr; }
+    .price-teams { padding: 22px 20px; }
     .ai-card .ai-counter { padding: 14px 14px; }
     .ai-head, .ai-sum-row { flex-wrap: wrap; gap: 6px 10px; }
     .waitlist-modal { padding: 12px; }
@@ -416,6 +450,7 @@
       <a href="#redline">Redlining</a>
       <a href="#signing">Signing</a>
       <a href="#ai">AI</a>
+      <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="nav-cta">
@@ -426,7 +461,7 @@
 </nav>
 <header class="hero">
   <div class="wrap">
-    <div class="label hero-eyebrow">Draft it. Edit it. Redline it. Sign it. All in the same platform.</div>
+    <div class="label hero-eyebrow">Draft it. Redline it. Sign it. All in one place.</div>
     <h1><span class="sr-only">Your next contract is already written.</span><span aria-hidden="true">Your next <em class="rotator" id="heroRotator">NDA</em><br>is already written.</span></h1>
     <p class="hero-sub">Rotely turns a Word contract into a reusable template, drafts a finished .docx in seconds, and lets your client redline and sign it without ever leaving the page. No more bouncing between Google Docs, Word, email threads, and a separate signature tool just to find out which version is real.</p>
     <div class="hero-actions">
@@ -751,6 +786,88 @@
     </div>
   </div>
 </section>
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">Pricing</div>
+      <h2>Draft and redline free.<br><em>Pay only when it&rsquo;s sent for signature.</em></h2>
+      <p>Templates, drafting, and client redlining are free on every plan. You only pay when a document goes out for signature.</p>
+    </div>
+    <div class="price-toggle" role="group" aria-label="Billing period">
+      <button type="button" data-billing="monthly" aria-pressed="true">Monthly</button>
+      <button type="button" data-billing="annual" aria-pressed="false">Annual <span class="save">2 months free</span></button>
+    </div>
+    <div class="price-grid">
+      <div class="price-card">
+        <h4>Pay as you go</h4>
+        <p class="price-for">For the occasional contract. No subscription.</p>
+        <div class="price-amount"><span class="num">$0</span><span class="per">/month</span></div>
+        <p class="price-note">First send free, then $3 per send</p>
+        <ul class="price-list">
+          <li><b>1 free send</b>, then $3 each</li>
+          <li>Unlimited templates and drafts</li>
+          <li>Client redlining and comments</li>
+          <li class="no">No AI features</li>
+        </ul>
+        <a href="#waitlist" class="pill-btn ghost js-waitlist-cta">Join the waitlist</a>
+      </div>
+      <div class="price-card">
+        <h4>Starter</h4>
+        <p class="price-for">For freelancers sending a few contracts a month.</p>
+        <div class="price-amount"><span class="num" data-monthly="$9.99" data-annual="$99.90">$9.99</span><span class="per" data-monthly="/month" data-annual="/year">/month</span></div>
+        <p class="price-note" data-monthly="or $99.90/year billed annually" data-annual="Works out to $8.33/month">or $99.90/year billed annually</p>
+        <ul class="price-list">
+          <li><b>5 sends</b> a month</li>
+          <li>Extra sends $3 each</li>
+          <li><b>25 AI asks</b> a month</li>
+          <li>Unlimited templates and drafts</li>
+          <li>Client redlining and comments</li>
+        </ul>
+        <a href="#waitlist" class="pill-btn ghost js-waitlist-cta">Join the waitlist</a>
+      </div>
+      <div class="price-card featured">
+        <span class="price-badge">Most popular</span>
+        <h4>Pro</h4>
+        <p class="price-for">For businesses closing contracts every week.</p>
+        <div class="price-amount"><span class="num" data-monthly="$24.99" data-annual="$249.90">$24.99</span><span class="per" data-monthly="/month" data-annual="/year">/month</span></div>
+        <p class="price-note" data-monthly="or $249.90/year billed annually" data-annual="Works out to $20.83/month">or $249.90/year billed annually</p>
+        <ul class="price-list">
+          <li><b>20 sends</b> a month</li>
+          <li>Extra sends $3 each</li>
+          <li><b>50 AI asks</b> a month</li>
+          <li>Unlimited templates and drafts</li>
+          <li>Client redlining and comments</li>
+        </ul>
+        <a href="#waitlist" class="pill-btn js-waitlist-cta">Join the waitlist</a>
+      </div>
+      <div class="price-card">
+        <h4>Unlimited</h4>
+        <p class="price-for">For high-volume senders who never want to count.</p>
+        <div class="price-amount"><span class="num" data-monthly="$49.99" data-annual="$499.90">$49.99</span><span class="per" data-monthly="/month" data-annual="/year">/month</span></div>
+        <p class="price-note" data-monthly="or $499.90/year billed annually" data-annual="Works out to $41.66/month">or $499.90/year billed annually</p>
+        <ul class="price-list">
+          <li><b>Unlimited sends</b>*</li>
+          <li><b>100 AI asks</b> a month</li>
+          <li>Unlimited templates and drafts</li>
+          <li>Client redlining and comments</li>
+        </ul>
+        <a href="#waitlist" class="pill-btn ghost js-waitlist-cta">Join the waitlist</a>
+      </div>
+    </div>
+    <div class="price-teams">
+      <div>
+        <h4>Teams</h4>
+        <p>Several people sending contracts? Get per-user pricing for your whole team.</p>
+      </div>
+      <a href="mailto:closeit@rotely.ai?subject=Rotely%20Teams%20pricing" class="pill-btn ghost">Contact us</a>
+    </div>
+    <div class="price-defs">
+      <div><b>What&rsquo;s a send?</b>One document sent out for signature, no matter how many people sign it.</div>
+      <div><b>What&rsquo;s an AI ask?</b>Each time the AI drafts a clause, suggests a redline counter, or drafts a document from your notes.</div>
+      <div><b>*Fair use</b>Unlimited is for one user and covers normal business use. For shared accounts, see Teams.</div>
+    </div>
+  </div>
+</section>
 <div class="waitlist-modal" id="waitlist" role="dialog" aria-modal="true" aria-labelledby="waitlist-title" aria-hidden="true">
     <div class="waitlist-card">
       <a href="#" class="waitlist-close" id="waitlist-close" aria-label="Close">&times;</a>
@@ -807,6 +924,10 @@
           <div class="faq-a"><div class="faq-a-inner">Yes. Turn on identity verification and signers confirm who they are with a photo of their ID and a selfie before they sign. It all happens inside Rotely, so there's no separate verification service to set up or pay for.</div></div>
         </div>
         <div class="faq-item">
+          <button class="faq-q"><span class="qtext">How does pricing work?</span><span class="icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner">Drafting, templates, and redlining are always free. You only pay when you send a document out for signature. One send covers one document, however many people sign it. Pay as you go at $3 per send (your first one is free), or pick a monthly plan with sends and AI asks included. Extra sends on a plan are $3 each. See <a href="#pricing">pricing</a>.</div></div>
+        </div>
+        <div class="faq-item">
           <button class="faq-q"><span class="qtext">Can I edit a draft after it's generated?</span><span class="icon">+</span></button>
           <div class="faq-a"><div class="faq-a-inner">Yes. Click into the document to edit or insert text directly, staging as many changes as you like before saving them all at once. Or download the .docx and edit it in Word like normal.</div></div>
         </div>
@@ -836,6 +957,7 @@
         <a href="#signing">Signing</a>
         <a href="#ai">AI</a>
         <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
         <a href="https://userotely.com/#/">Log in</a>
       </div>
@@ -845,6 +967,14 @@
   </div>
 </footer>
 <script>
+  const billingBtns = document.querySelectorAll('.price-toggle button');
+  billingBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const mode = btn.dataset.billing;
+      billingBtns.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+      document.querySelectorAll('.pricing [data-monthly]').forEach(el => { el.textContent = el.dataset[mode]; });
+    });
+  });
   document.querySelectorAll('.faq-item').forEach(item => {
     item.querySelector('.faq-q').addEventListener('click', () => {
       const wasOpen = item.classList.contains('open');
