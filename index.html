@@ -3,8 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rotely.ai: Draft, redline, and sign contracts in one place</title>
-<meta name="description" content="Upload a contract once. Mark what changes. Draft, negotiate, and sign finished contracts without ever leaving the page.">
+<title>Rotely.ai: Contracts that negotiate themselves</title>
+<meta name="description" content="Draft from your own contracts, let clients redline in the browser, auto-accept changes inside your rules, and get it signed in the same tab.">
+<link rel="canonical" href="https://rotely.ai/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rotely.ai">
+<meta property="og:url" content="https://rotely.ai/">
+<meta property="og:title" content="Rotely.ai: Contracts that negotiate themselves">
+<meta property="og:description" content="Draft from your own contracts, let clients redline in the browser, auto-accept changes inside your rules, and get it signed in the same tab.">
+<meta property="og:image" content="https://rotely.ai/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Rotely.ai: Contracts that negotiate themselves">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rotely.ai: Contracts that negotiate themselves">
+<meta name="twitter:description" content="Draft from your own contracts, let clients redline in the browser, auto-accept changes inside your rules, and get it signed in the same tab.">
+<meta name="twitter:image" content="https://rotely.ai/og-image.png">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -36,7 +50,7 @@
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  #how, #edit, #redline, #signing, #ai, #features, #pricing, #faq { scroll-margin-top: 84px; }
+  #compare, #how, #edit, #redline, #signing, #ai, #features, #pricing, #security, #faq { scroll-margin-top: 84px; }
   body {
     margin: 0;
     background: var(--cream);
@@ -83,7 +97,7 @@
     display: flex; align-items: center; justify-content: center;
   }
   .brand-mark img { width: 100%; height: 100%; display: block; }
-  .nav-links { display: flex; align-items: center; gap: 32px; font-size: 15px; font-weight: 500; }
+  .nav-links { display: flex; align-items: center; gap: 26px; font-size: 15px; font-weight: 500; }
   .nav-links a { text-decoration: none; color: var(--ink-soft); transition: color .15s; }
   .nav-links a:hover { color: var(--ink); }
   .nav-cta { display: flex; align-items: center; gap: 14px; }
@@ -105,8 +119,6 @@
   .hero-eyebrow { margin-bottom: 24px; }
   .hero h1 { font-size: 72px; max-width: 900px; }
   .hero h1 em { color: var(--ink-soft); }
-  .rotator { display: inline-block; white-space: nowrap; transition: opacity .35s ease, transform .35s ease; }
-  .rotator.out { opacity: 0; transform: translateY(0.25em); }
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
   .hero-sub { max-width: 600px; margin-top: 26px; font-size: 18px; line-height: 1.6; color: var(--ink-soft); }
   .hero-actions { display: flex; align-items: center; gap: 12px; margin-top: 34px; flex-wrap: wrap; }
@@ -214,6 +226,32 @@
   .sig-tag.pending { color: var(--ink-soft); background: var(--chip); }
   /* ---------------- features ---------------- */
   .features { padding: 40px 0 110px; }
+  .hero-visual-side .side-card .t .sig-tag { margin: 0 0 0 6px; letter-spacing: 0; text-transform: none; vertical-align: middle; }
+  .side-card .t .sig-tag.warn { color: var(--del); background: #f6e6e3; }
+  .compare { padding: 32px 0 96px; }
+  .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--paper-white); border: 1px solid var(--line-soft); border-radius: var(--radius); overflow: hidden; font-size: 15.5px; }
+  .compare-table th, .compare-table td { padding: 16px 22px; text-align: left; border-bottom: 1px solid var(--line-soft); }
+  .compare-table tr:last-child td { border-bottom: 0; }
+  .compare-table thead th { font-family: var(--serif); font-weight: 400; font-size: 20px; background: var(--cream-2); }
+  .compare-table th.col, .compare-table td.col { width: 22%; text-align: center; }
+  .compare-table thead th.us { background: var(--ink); color: white; }
+  .compare-table td.us { background: #fbfaf7; }
+  .compare-table .yes { color: var(--ok); font-weight: 600; }
+  .compare-table .no { color: var(--muted); }
+  .compare-table .stage { font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 2px; }
+  .security { padding: 24px 0 96px; }
+  .sec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .sec-card { padding: 24px 0 0; border-top: 1px solid var(--ink); }
+  .sec-card h4 { font-family: var(--serif); font-weight: 500; font-size: 21px; margin: 0 0 8px; }
+  .sec-card p { margin: 0; color: var(--ink-soft); font-size: 15px; line-height: 1.6; }
+  .sec-card a { color: var(--ink); }
+  .price-beta { max-width: 720px; margin: -28px 0 32px; padding: 14px 18px; border: 1px dashed var(--line); border-radius: var(--radius-sm); font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; background: var(--paper-white); }
+  .price-beta b { color: var(--ink); font-weight: 600; }
+  .waitlist-select { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 40px; }
+  .waitlist-field-label { text-align: left; font-size: 13px; color: var(--muted); margin: 6px 2px -4px; }
+  .footer-legal { display: flex; gap: 18px; margin-top: 10px; font-size: 13.5px; }
+  .footer-legal a { color: var(--muted); text-decoration: none; }
+  .footer-legal a:hover { color: var(--ink); }
   .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   /* ---------------- AI ---------------- */
   .ai-section { padding: 40px 0 100px; }
@@ -352,7 +390,13 @@
     .hero-sub { font-size: 16px; }
     .hero-visual-inner { grid-template-columns: 1fr; }
     .hero-visual-side, .client-side { padding: 0 22px 22px; }
-    .steps, .feat-grid, .mock-shots, .ai-grid, .ai-trust, .price-defs { grid-template-columns: 1fr; }
+    .steps, .feat-grid, .mock-shots, .ai-grid, .ai-trust, .price-defs, .sec-grid { grid-template-columns: 1fr; }
+    .price-beta { margin-top: -16px; }
+    .compare { padding: 16px 0 64px; }
+    .security { padding: 8px 0 64px; }
+    .compare-table { font-size: 14px; }
+    .compare-table th, .compare-table td { padding: 13px 12px; }
+    .compare-table thead th { font-size: 16px; }
     .price-grid { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
     .price-for, .price-note { min-height: 0; }
     .pricing { padding: 24px 0 64px; }
@@ -370,8 +414,6 @@
     .section-head h2 { font-size: 34px; }
     .journey-wrap { grid-template-columns: 34px 1fr; column-gap: 16px; }
     .journey-node { width: 30px; height: 30px; font-size: 14px; }
-    .intro-line { font-size: min(12vw, 64px); }
-    .intro-scroll { bottom: 28px; }
     .waitlist-card { padding: 40px 22px 26px; }
     .waitlist-card h2 { font-size: 30px; }
     .hero-actions { flex-wrap: wrap; gap: 10px; }
@@ -388,7 +430,6 @@
     .hero h1 { font-size: 38px; }
     .doc-mock { padding: 22px 20px; font-size: 14px; }
     .feat-grid { gap: 14px; }
-    .intro-line { font-size: min(14vw, 48px); }
     .ai-card, .feat-card, .price-card { padding: 24px 20px; }
     .price-grid { grid-template-columns: 1fr; }
     .price-teams { padding: 22px 20px; }
@@ -398,47 +439,15 @@
     .waitlist-card { max-height: calc(100vh - 24px); padding: 40px 18px 24px; }
     .waitlist-input { font-size: 16px; }
   }
-  /* ---------------- intro overlay ---------------- */
-  .intro-overlay { position: fixed; inset: 0; z-index: 9999; background: var(--cream); display: flex; align-items: center; justify-content: center; overflow: hidden; }
-  .intro-overlay.done { opacity: 0; pointer-events: none; transition: opacity .7s ease; }
-  .intro-lines { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-  .intro-line {
-    font-family: var(--serif); font-weight: 400;
-    font-size: min(9vw, 96px); letter-spacing: -0.02em; line-height: 1.1;
-    opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease;
-    white-space: nowrap; text-align: center; padding: 0 16px;
-  }
-  .intro-line em { color: var(--ink-soft); }
-  .intro-line.active { opacity: 1; transform: translateY(0); }
-  .intro-scroll {
-    position: absolute; bottom: 44px; left: 50%; transform: translateX(-50%);
-    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
-    color: var(--muted); text-transform: uppercase; opacity: 0; transition: opacity .5s ease .2s;
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
-  }
-  .intro-scroll.show { opacity: 1; }
-  .intro-scroll .chev { font-size: 16px; animation: bob 1.4s ease-in-out infinite; }
-  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
-  html.skip-intro .intro-overlay { display: none; }
 </style>
 <script>
   // Every load starts fresh at the top: no remembered scroll position or hash jump.
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   window.rotelyOpenWaitlist = location.hash === '#waitlist';
   if (location.hash) history.replaceState(null, '', location.pathname + location.search);
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.documentElement.classList.add('skip-intro');
-  }
 </script>
 </head>
 <body>
-<div class="intro-overlay" id="introOverlay">
-  <div class="intro-lines">
-    <div class="intro-line">Stop the <em>friction.</em></div>
-    <div class="intro-line">Close the <em>deal.</em></div>
-  </div>
-  <div class="intro-scroll" id="introScroll"><span>Scroll to continue</span><span class="chev">&#8964;</span></div>
-</div>
 <nav>
   <div class="nav-inner">
     <a href="#" class="brand">
@@ -450,11 +459,12 @@
       <a href="#redline">Redlining</a>
       <a href="#signing">Signing</a>
       <a href="#ai">AI</a>
+      <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="nav-cta">
-      <a href="https://userotely.com/#/" class="pill-btn ghost" style="padding:9px 18px;">Log in</a>
+      <a href="https://userotely.com/#/" class="pill-btn ghost" style="padding:9px 18px;">Beta login</a>
       <a href="#waitlist" class="pill-btn js-waitlist-cta"><span class="plus">+</span> Join the waitlist</a>
     </div>
   </div>
@@ -462,29 +472,29 @@
 <header class="hero">
   <div class="wrap">
     <div class="label hero-eyebrow">Draft it. Redline it. Sign it. All in one place.</div>
-    <h1><span class="sr-only">Your next contract is already written.</span><span aria-hidden="true">Your next <em class="rotator" id="heroRotator">NDA</em><br>is already written.</span></h1>
-    <p class="hero-sub">Rotely turns a Word contract into a reusable template, drafts a finished .docx in seconds, and lets your client redline and sign it without ever leaving the page. No more bouncing between Google Docs, Word, email threads, and a separate signature tool just to find out which version is real.</p>
+    <h1>Contracts that <em>negotiate</em><br>themselves.</h1>
+    <p class="hero-sub">Signing tools only show up at the end. Rotely runs the whole deal: it drafts from your own contracts, lets clients redline right in the document, accepts every change that fits your rules, and answers the rest with a counter that sounds like you. You step in only for the asks that matter, then it&rsquo;s signed in the same tab.</p>
     <div class="hero-actions">
       <a href="#waitlist" class="pill-btn js-waitlist-cta"><span class="plus">+</span> Join the waitlist</a>
       <a href="#how" class="pill-btn ghost">See how it works</a>
     </div>
-    <div class="hero-note">Join the waitlist for beta access. Your first template takes under a minute to set up.</div>
+    <div class="hero-note">For anyone who sends the same contracts again and again. Drafting and redlining are free. Now in private beta.</div>
     <div class="hero-visual">
       <div class="hero-visual-inner">
         <div class="doc-mock">
           <div class="para doc-title">SERVICES AGREEMENT</div>
           <div class="dline w50"></div>
-          <div class="para">This Services Agreement is entered into by <span class="tok">{{client_name}}</span> ("Client"), effective as of <span class="tok">{{effective_date}}</span>.</div>
+          <div class="para">Payment is due within <span class="redline-del">30</span><span class="redline-ins">45</span> days of the invoice date.</div>
           <div class="dline w90"></div>
+          <div class="para">Client receives a one-time discount of <span class="redline-del">5%</span><span class="redline-ins">15%</span> on the initial order.</div>
           <div class="dline w70"></div>
-          <div class="para">The total fees payable under this Agreement shall be <span class="tok">{{contract_value}}</span>, payable monthly.</div>
-          <div class="dline w90"></div>
+          <div class="para">Signed by <span class="tok">{{client_name}}</span> and Provider on the dates below.</div>
           <div class="dline w50"></div>
         </div>
         <div class="hero-visual-side">
-          <div class="side-card"><div class="t">Step 1</div><div class="d">Select text, mark it as a placeholder</div></div>
-          <div class="side-card"><div class="t">Step 2</div><div class="d">Fill in the blanks in a simple form</div></div>
-          <div class="side-card"><div class="t">Step 3</div><div class="d">Send it to your client to redline and sign, right from Rotely</div></div>
+          <div class="side-card"><div class="t">Payment term <span class="sig-tag">Auto-accepted</span></div><div class="d">30 &rarr; 45 days fits your rule, so you never see it</div></div>
+          <div class="side-card"><div class="t">Discount <span class="sig-tag warn">Outside your range</span></div><div class="d">Client asked for 15%. Suggested counter: 10%, the top of your guardrail</div></div>
+          <div class="side-card"><div class="t">Agreed <span class="sig-tag pending">Ready to sign</span></div><div class="d">Sent for a legally binding signature in the same tab</div></div>
         </div>
       </div>
     </div>
@@ -495,6 +505,30 @@
     <div class="label">The insight</div>
     <h2 class="friction-h">Every contract you draft is the same contract.<br>The names change. The dates change. <em>The words don't.</em></h2>
     <p class="friction-sub">You know it clause by clause. What eats your time is retyping it. Then comes the chase: Google Docs for one client, Word for another, redlines buried in an email thread, and one more tool just to get it signed.</p>
+  </div>
+</section>
+<section class="compare" id="compare">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">Not just a signing tool</div>
+      <h2>Signing is the last five minutes.<br><em>Rotely handles the weeks before it.</em></h2>
+      <p>E-signature apps start once the contract is done. Most of the work happens earlier, in drafting and in the back-and-forth.</p>
+    </div>
+    <table class="compare-table">
+      <thead>
+        <tr><th scope="col"></th><th scope="col" class="col">Signing-only tools</th><th scope="col" class="col us">Rotely</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="stage">Draft</span>Turn your own contract into a reusable template</td><td class="col no">&mdash;</td><td class="col us yes">&#10003;</td></tr>
+        <tr><td><span class="stage">Draft</span>Draft a contract from a client&rsquo;s email or your notes</td><td class="col no">&mdash;</td><td class="col us yes">&#10003;</td></tr>
+        <tr><td><span class="stage">Negotiate</span>Clients redline right in the document, with comments</td><td class="col no">&mdash;</td><td class="col us yes">&#10003;</td></tr>
+        <tr><td><span class="stage">Negotiate</span>Changes inside your rules are accepted automatically</td><td class="col no">&mdash;</td><td class="col us yes">&#10003;</td></tr>
+        <tr><td><span class="stage">Negotiate</span>Suggested counters based on how you&rsquo;ve countered before</td><td class="col no">&mdash;</td><td class="col us yes">&#10003;</td></tr>
+        <tr><td><span class="stage">Sign</span>Legally binding e-signatures with an audit trail</td><td class="col yes">&#10003;</td><td class="col us yes">&#10003;</td></tr>
+        <tr><td><span class="stage">Sign</span>Photo ID and selfie checks for signers</td><td class="col no">Often a paid add-on</td><td class="col us yes">Included</td></tr>
+        <tr><td><span class="stage">Track</span>Renewal dates pulled from the signed contract</td><td class="col no">&mdash;</td><td class="col us yes">&#10003;</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 <div class="journey" id="journey">
@@ -649,7 +683,7 @@
     <div class="journey-content">
     <div class="section-head">
       <h2>Agree on it. Sign it. Same tab.</h2>
-      <p>The moment everyone's aligned, send the contract out for signature without leaving the document. No separate tool or export needed. Signatures are collected through a dedicated e-signature service, so every one is legally binding and backed by a full audit trail. Need to know who&rsquo;s signing? Turn on selfie and ID verification, built right into the same signing flow.</p>
+      <p>The moment everyone's aligned, send the contract out for signature without leaving the document. No separate tool or export needed. Signatures are powered by DocuSeal, so every one is legally binding, and you can ask signers to verify who they are with a photo ID and a selfie.</p>
     </div>
     <div class="mock-shots">
       <div class="mock-shot">
@@ -687,7 +721,7 @@
         </div>
         <div class="shot-takeaway">
           <h4>One record, start to finish</h4>
-          <p>Trusted, verified, and legally binding. Signatures run through a dedicated e-signature service, with a timestamped record of who signed and when, plus optional photo ID and selfie checks. All of it lands on the same timeline as the draft and every redline.</p>
+          <p>Every signature comes with a timestamped record of who signed and when. The signed copy lands on the same timeline as the first draft and every redline before it.</p>
         </div>
       </div>
     </div>
@@ -768,12 +802,12 @@
         <p>Set a rule once per field: a range, a list of approved values, or always flag. Redlines inside the rule are auto-accepted, so only the real asks need you.</p>
       </div>
       <div class="feat-card">
-        <h4>Legally binding e-signatures</h4>
-        <p>Every contract is signed through a dedicated e-signature service, with a timestamped record of who signed and when.</p>
+        <h4>Your formatting, untouched</h4>
+        <p>Fonts, numbering, tables and signature blocks come through every draft exactly as they were in your original.</p>
       </div>
       <div class="feat-card">
-        <h4>Built-in ID and selfie checks</h4>
-        <p>Signers confirm who they are with a photo ID and a selfie before signing. No separate verification service to pay for.</p>
+        <h4>One library for every deal</h4>
+        <p>Drafts, redline rounds and signed copies live together, so there&rsquo;s never a question of which version is real.</p>
       </div>
       <div class="feat-card">
         <h4>Signing order and reminders</h4>
@@ -793,6 +827,7 @@
       <h2>Draft and redline free.<br><em>Pay only when it&rsquo;s sent for signature.</em></h2>
       <p>Templates, drafting, and client redlining are free on every plan. You only pay when a document goes out for signature.</p>
     </div>
+    <p class="price-beta"><b>Rotely is in private beta.</b> Pick the plan you&rsquo;d choose and join the waitlist for it. Nothing is charged today, and plans start at launch.</p>
     <div class="price-toggle" role="group" aria-label="Billing period">
       <button type="button" data-billing="monthly" aria-pressed="true">Monthly</button>
       <button type="button" data-billing="annual" aria-pressed="false">Annual <span class="save">2 months free</span></button>
@@ -809,11 +844,11 @@
           <li>Client redlining and comments</li>
           <li class="no">No AI features</li>
         </ul>
-        <a href="#waitlist" class="pill-btn ghost js-waitlist-cta">Join the waitlist</a>
+        <a href="#waitlist" class="pill-btn ghost js-waitlist-cta" data-plan="Pay as you go">Join the waitlist for Pay as you go</a>
       </div>
       <div class="price-card">
         <h4>Starter</h4>
-        <p class="price-for">For freelancers sending a few contracts a month.</p>
+        <p class="price-for">For a few contracts a month.</p>
         <div class="price-amount"><span class="num" data-monthly="$9.99" data-annual="$99.90">$9.99</span><span class="per" data-monthly="/month" data-annual="/year">/month</span></div>
         <p class="price-note" data-monthly="or $99.90/year billed annually" data-annual="Works out to $8.33/month">or $99.90/year billed annually</p>
         <ul class="price-list">
@@ -823,12 +858,12 @@
           <li>Unlimited templates and drafts</li>
           <li>Client redlining and comments</li>
         </ul>
-        <a href="#waitlist" class="pill-btn ghost js-waitlist-cta">Join the waitlist</a>
+        <a href="#waitlist" class="pill-btn ghost js-waitlist-cta" data-plan="Starter">Join the waitlist for Starter</a>
       </div>
       <div class="price-card featured">
         <span class="price-badge">Most popular</span>
         <h4>Pro</h4>
-        <p class="price-for">For businesses closing contracts every week.</p>
+        <p class="price-for">For closing contracts every week.</p>
         <div class="price-amount"><span class="num" data-monthly="$24.99" data-annual="$249.90">$24.99</span><span class="per" data-monthly="/month" data-annual="/year">/month</span></div>
         <p class="price-note" data-monthly="or $249.90/year billed annually" data-annual="Works out to $20.83/month">or $249.90/year billed annually</p>
         <ul class="price-list">
@@ -838,7 +873,7 @@
           <li>Unlimited templates and drafts</li>
           <li>Client redlining and comments</li>
         </ul>
-        <a href="#waitlist" class="pill-btn js-waitlist-cta">Join the waitlist</a>
+        <a href="#waitlist" class="pill-btn js-waitlist-cta" data-plan="Pro">Join the waitlist for Pro</a>
       </div>
       <div class="price-card">
         <h4>Unlimited</h4>
@@ -851,7 +886,7 @@
           <li>Unlimited templates and drafts</li>
           <li>Client redlining and comments</li>
         </ul>
-        <a href="#waitlist" class="pill-btn ghost js-waitlist-cta">Join the waitlist</a>
+        <a href="#waitlist" class="pill-btn ghost js-waitlist-cta" data-plan="Unlimited">Join the waitlist for Unlimited</a>
       </div>
     </div>
     <div class="price-teams">
@@ -863,7 +898,7 @@
     </div>
     <div class="price-defs">
       <div><b>What&rsquo;s a send?</b>One document sent out for signature, no matter how many people sign it.</div>
-      <div><b>What&rsquo;s an AI ask?</b>Each time the AI drafts a clause, suggests a redline counter, or drafts a document from your notes.</div>
+      <div><b>What&rsquo;s an AI ask?</b>Each time the AI drafts a clause, suggests a redline counter, or drafts a document from your notes. Redline summaries and renewal tracking are included on paid plans and don&rsquo;t use asks.</div>
       <div><b>*Fair use</b>Unlimited is for one user and covers normal business use. For shared accounts, see Teams.</div>
     </div>
   </div>
@@ -873,15 +908,59 @@
       <a href="#" class="waitlist-close" id="waitlist-close" aria-label="Close">&times;</a>
       <div class="label" style="margin-bottom:14px;">Waitlist</div>
       <h2 id="waitlist-title">Join the waitlist</h2>
-      <p class="waitlist-sub">We're in beta and onboarding a limited number of teams. Leave your email and we'll reach out.</p>
+      <p class="waitlist-sub">Rotely is in private beta and we&rsquo;re letting people in in small batches. Leave your email and the plan you&rsquo;d pick, and we&rsquo;ll reach out.</p>
       <form id="waitlist-form" class="waitlist-form" novalidate>
         <input type="text" name="name" id="waitlist-name" class="waitlist-input" placeholder="Your name (optional)" autocomplete="name" aria-label="Your name (optional)" />
         <input type="email" name="email" id="waitlist-email" class="waitlist-input" placeholder="you@company.com" autocomplete="email" aria-label="Email address" required />
+        <label class="waitlist-field-label" for="waitlist-plan">Which plan would you choose?</label>
+        <select name="plan" id="waitlist-plan" class="waitlist-input waitlist-select">
+          <option value="Not sure yet">Not sure yet</option>
+          <option value="Pay as you go">Pay as you go ($3 per send)</option>
+          <option value="Starter">Starter ($9.99/month)</option>
+          <option value="Pro">Pro ($24.99/month)</option>
+          <option value="Unlimited">Unlimited ($49.99/month)</option>
+          <option value="Teams">Teams (per-user pricing)</option>
+        </select>
         <button type="submit" id="waitlist-submit" class="pill-btn">Join the waitlist</button>
       </form>
       <p id="waitlist-message" class="waitlist-message" role="status" aria-live="polite"></p>
     </div>
 </div>
+<section class="security" id="security">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">Security &amp; privacy</div>
+      <h2>Your contracts stay <em>yours.</em></h2>
+      <p>You&rsquo;re trusting Rotely with signed agreements and signers&rsquo; IDs. Here&rsquo;s how we treat them.</p>
+    </div>
+    <div class="sec-grid">
+      <div class="sec-card">
+        <h4>Private by default</h4>
+        <p>Templates, drafts and signed contracts are visible only to your account and the people you choose to share them with.</p>
+      </div>
+      <div class="sec-card">
+        <h4>Never used to train AI</h4>
+        <p>Your documents are never used to train any AI model. AI only works on a document when you ask it to.</p>
+      </div>
+      <div class="sec-card">
+        <h4>Signatures powered by DocuSeal</h4>
+        <p>Every signature is a legally binding e-signature under the U.S. ESIGN Act and UETA, with a timestamped audit trail.</p>
+      </div>
+      <div class="sec-card">
+        <h4>ID checks used only to verify</h4>
+        <p>Photo ID and selfie checks are optional. When they&rsquo;re on, the photos are used only to confirm who signed and stay with that contract&rsquo;s signing record.</p>
+      </div>
+      <div class="sec-card">
+        <h4>Secure share links</h4>
+        <p>Clients open a contract through a private link and a one-time code. They don&rsquo;t need an account, and nobody else can open it.</p>
+      </div>
+      <div class="sec-card">
+        <h4>Clear policies</h4>
+        <p>Read exactly what we collect and why in our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms of Service</a>. Questions? <a href="mailto:closeit@rotely.ai">Email us</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="faq" id="faq">
   <div class="wrap">
     <div class="faq-layout">
@@ -893,11 +972,11 @@
       <div class="faq-list">
         <div class="faq-item open">
           <button class="faq-q"><span class="qtext">Is this just a Word template?</span><span class="icon">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner">No. A Word template still makes you find-and-replace by hand and hope you didn't miss a spot. Rotely marks the exact fields once, then fills them through a form. You never edit the document directly, unless you want to.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">No. A Word template still makes you find-and-replace by hand and hope you didn't miss a spot. Rotely marks the exact fields once, then fills them through a form. Anything else you want to change, you click into the document and edit it in place.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q"><span class="qtext">What file types can I upload?</span><span class="icon">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner">.docx today. Output is always .docx as well, so what you get back opens cleanly in Word or Google Docs, right up until the moment it's signed.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">.docx today. Your formatting carries through every draft, and you can export a .docx anytime if you need a copy outside Rotely.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q"><span class="qtext">Do signature blocks in the document render correctly?</span><span class="icon">+</span></button>
@@ -909,27 +988,27 @@
         </div>
         <div class="faq-item">
           <button class="faq-q"><span class="qtext">What happens to my documents?</span><span class="icon">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner">Your master documents and drafts are private to your account. Nobody else on Rotely can see them, and nothing is used to train any model.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q"><span class="qtext">Can I sign contracts in Rotely?</span><span class="icon">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner">Yes. Once everyone's agreed on the terms, send it for signature right from the document. No separate tool needed, and the signed copy is filed on the same timeline as the draft and every redline before it.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Your templates, drafts and signed contracts are private to your account and the people you share them with, and nothing is used to train any AI model. See <a href="#security">security</a> and our <a href="/privacy">Privacy Policy</a>.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q"><span class="qtext">Are signatures legally binding?</span><span class="icon">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner">Yes. Rotely collects signatures through a dedicated e-signature service, so every contract signed in Rotely is a legally binding electronic signature. Each one comes with a timestamped record of who signed and when, the kind of evidence you&rsquo;d need if a signature were ever questioned.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes. Signatures in Rotely are powered by DocuSeal and are legally binding electronic signatures under the U.S. ESIGN Act and UETA. Each one comes with a timestamped audit trail of who signed and when, the kind of evidence you&rsquo;d need if a signature were ever questioned.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q"><span class="qtext">Can I verify who's signing?</span><span class="icon">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner">Yes. Turn on identity verification and signers confirm who they are with a photo of their ID and a selfie before they sign. It all happens inside Rotely, so there's no separate verification service to set up or pay for.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes. Turn on identity verification and signers confirm who they are with a photo ID and a selfie before they sign. It&rsquo;s part of the same signing flow, with no separate service to set up or pay for.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q"><span class="qtext">How does pricing work?</span><span class="icon">+</span></button>
           <div class="faq-a"><div class="faq-a-inner">Drafting, templates, and redlining are always free. You only pay when you send a document out for signature. One send covers one document, however many people sign it. Pay as you go at $3 per send (your first one is free), or pick a monthly plan with sends and AI asks included. Extra sends on a plan are $3 each. See <a href="#pricing">pricing</a>.</div></div>
         </div>
         <div class="faq-item">
+          <button class="faq-q"><span class="qtext">Can I use Rotely today?</span><span class="icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner">Rotely is in private beta. Join the waitlist and tell us which plan you&rsquo;d pick, and we&rsquo;ll invite people in batches. Nothing is charged during the beta. Beta users sign in from the Beta login link at the top of the page.</div></div>
+        </div>
+        <div class="faq-item">
           <button class="faq-q"><span class="qtext">Can I edit a draft after it's generated?</span><span class="icon">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner">Yes. Click into the document to edit or insert text directly, staging as many changes as you like before saving them all at once. Or download the .docx and edit it in Word like normal.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes. Click into the document to edit or insert text directly, staging as many changes as you like before saving them all at once.</div></div>
         </div>
       </div>
     </div>
@@ -937,8 +1016,8 @@
 </section>
 <section class="final-cta">
   <div class="wordmark-bg">Rotely</div>
-  <h2>Stop the closing friction.<br>Start <em>closing</em> faster.</h2>
-  <p>You already know this contract. Upload it once and let Rotely handle drafting, redlining, and signing, the parts that were never worth your time.</p>
+  <h2>Stop reading every redline.<br>Let <em>your rules</em> do it.</h2>
+  <p>Upload a contract once. Rotely drafts it, handles the routine back-and-forth, and gets it signed, so you only step in when it matters.</p>
   <div class="hero-actions">
     <a href="#waitlist" class="pill-btn on-dark js-waitlist-cta"><span class="plus">+</span> Join the waitlist</a>
   </div>
@@ -958,12 +1037,14 @@
         <a href="#ai">AI</a>
         <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
+        <a href="#security">Security</a>
         <a href="#faq">FAQ</a>
-        <a href="https://userotely.com/#/">Log in</a>
+        <a href="https://userotely.com/#/">Beta login</a>
       </div>
       <div class="footer-copy">© 2026 Rotely.ai</div>
     </div>
     <div class="footer-contact">Questions? Email us at <a href="mailto:closeit@rotely.ai">closeit@rotely.ai</a></div>
+    <div class="footer-legal"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></div>
   </div>
 </footer>
 <script>
@@ -982,73 +1063,6 @@
       if (!wasOpen) item.classList.add('open');
     });
   });
-  const introOverlay = document.getElementById('introOverlay');
-  if (introOverlay && document.documentElement.classList.contains('skip-intro')) {
-    introOverlay.remove();
-  } else if (introOverlay) {
-    const introLines = introOverlay.querySelectorAll('.intro-line');
-    const introScroll = document.getElementById('introScroll');
-    window.scrollTo(0, 0);
-    let introActive = true;
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-    function armDismiss() {
-      const dismissKeys = ['ArrowDown', 'PageDown', ' ', 'Spacebar'];
-      const onWheel = () => finishIntro();
-      const onTouchMove = () => finishIntro();
-      const onKeydown = (e) => { if (dismissKeys.includes(e.key)) finishIntro(); };
-      window.addEventListener('wheel', onWheel, { passive: true });
-      window.addEventListener('touchmove', onTouchMove, { passive: true });
-      window.addEventListener('keydown', onKeydown);
-      introOverlay._cleanupDismiss = () => {
-        window.removeEventListener('wheel', onWheel);
-        window.removeEventListener('touchmove', onTouchMove);
-        window.removeEventListener('keydown', onKeydown);
-      };
-    }
-    function playIntro() {
-      introOverlay.classList.remove('done');
-      introScroll.classList.remove('show');
-      introLines.forEach(l => l.classList.remove('active'));
-      let i = 0;
-      function step() {
-        if (i < introLines.length) {
-          introLines[i].classList.add('active');
-          i++;
-          setTimeout(step, 420);
-        } else {
-          introScroll.classList.add('show');
-          armDismiss();
-          setTimeout(finishIntro, 1200);
-        }
-      }
-      setTimeout(step, 350);
-    }
-    function finishIntro() {
-      if (!introActive) return;
-      introActive = false;
-      introOverlay.classList.add('done');
-      document.documentElement.style.overflow = '';
-      document.body.style.overflow = '';
-      window.scrollTo(0, 0);
-      if (introOverlay._cleanupDismiss) introOverlay._cleanupDismiss();
-    }
-    introOverlay.addEventListener('click', finishIntro);
-    playIntro();
-  }
-  const heroRotator = document.getElementById('heroRotator');
-  if (heroRotator && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const heroWords = ['NDA', 'offer letter', 'sales contract', 'lease', 'retainer'];
-    let heroIdx = 0;
-    setInterval(() => {
-      heroRotator.classList.add('out');
-      setTimeout(() => {
-        heroIdx = (heroIdx + 1) % heroWords.length;
-        heroRotator.textContent = heroWords[heroIdx];
-        heroRotator.classList.remove('out');
-      }, 350);
-    }, 2400);
-  }
   const journeySections = document.querySelectorAll('.journey-section');
   if (journeySections.length && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
@@ -1082,8 +1096,13 @@
       document.body.style.overflow = '';
       if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
     }
+    const planSelect = document.getElementById('waitlist-plan');
     document.querySelectorAll('.js-waitlist-cta').forEach(cta => {
-      cta.addEventListener('click', (e) => { e.preventDefault(); openWaitlist(); });
+      cta.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (planSelect && cta.dataset.plan) planSelect.value = cta.dataset.plan;
+        openWaitlist();
+      });
     });
     closeBtn.addEventListener('click', (e) => { e.preventDefault(); closeWaitlist(); });
     modal.addEventListener('click', (e) => { if (e.target === modal) closeWaitlist(); });
@@ -1114,6 +1133,9 @@
     var body = new URLSearchParams();
     body.append("name", name);
     body.append("email", email);
+    body.append("plan", document.getElementById("waitlist-plan").value);
+    var billingBtn = document.querySelector('.price-toggle button[aria-pressed="true"]');
+    body.append("billing", billingBtn ? billingBtn.dataset.billing : "monthly");
 
     fetch(ENDPOINT, {
       method: "POST",
