@@ -4,20 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rotely.ai: Contracts that negotiate themselves</title>
-<meta name="description" content="Draft from your own contracts, let clients redline in the browser, auto-accept changes inside your rules, and get it signed in the same tab.">
+<meta name="description" content="Draft a contract from an email or your notes, send it from your inbox, let clients redline in the browser, auto-accept changes inside your rules, and get it signed in the same tab.">
 <link rel="canonical" href="https://rotely.ai/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Rotely.ai">
 <meta property="og:url" content="https://rotely.ai/">
 <meta property="og:title" content="Rotely.ai: Contracts that negotiate themselves">
-<meta property="og:description" content="Draft from your own contracts, let clients redline in the browser, auto-accept changes inside your rules, and get it signed in the same tab.">
+<meta property="og:description" content="Draft a contract from an email or your notes, send it from your inbox, let clients redline in the browser, auto-accept changes inside your rules, and get it signed in the same tab.">
 <meta property="og:image" content="https://rotely.ai/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Rotely.ai: Contracts that negotiate themselves">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Rotely.ai: Contracts that negotiate themselves">
-<meta name="twitter:description" content="Draft from your own contracts, let clients redline in the browser, auto-accept changes inside your rules, and get it signed in the same tab.">
+<meta name="twitter:description" content="Draft a contract from an email or your notes, send it from your inbox, let clients redline in the browser, auto-accept changes inside your rules, and get it signed in the same tab.">
 <meta name="twitter:image" content="https://rotely.ai/og-image.png">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -50,7 +50,7 @@
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  #compare, #how, #edit, #redline, #signing, #ai, #features, #pricing, #security, #faq { scroll-margin-top: 84px; }
+  #inbox, #compare, #how, #edit, #redline, #signing, #ai, #features, #pricing, #security, #faq { scroll-margin-top: 84px; }
   body {
     margin: 0;
     background: var(--cream);
@@ -153,6 +153,24 @@
   .side-card { background: var(--paper-white); border: 1px solid var(--line-soft); border-radius: var(--radius-sm); padding: 16px 18px; }
   .side-card .t { font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
   .side-card .d { color: var(--ink); font-size: 15px; font-weight: 500; }
+  /* ---------------- inbox (draft + send from email) ---------------- */
+  .inbox { padding: 24px 0 96px; }
+  .inbox-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .inbox-card { background: var(--paper-white); border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 24px 24px 26px; display: flex; flex-direction: column; position: relative; }
+  .inbox-card:not(:last-child)::after { content: "\2192"; position: absolute; right: -22px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; border-radius: 50%; background: var(--ink); color: white; font-size: 13px; display: flex; align-items: center; justify-content: center; z-index: 1; }
+  .inbox-step { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .mail-mock { background: var(--cream-2); border: 1px solid var(--line-soft); border-radius: 12px; padding: 14px 16px; font-size: 13px; color: var(--ink-soft); line-height: 1.55; margin-bottom: 18px; }
+  .mail-row { display: flex; gap: 8px; padding-bottom: 6px; margin-bottom: 8px; border-bottom: 1px solid var(--line-soft); font-size: 12px; }
+  .mail-row b { color: var(--muted); font-weight: 600; min-width: 46px; }
+  .mail-row span { color: var(--ink); font-weight: 500; min-width: 0; overflow-wrap: anywhere; }
+  .mail-body { font-family: var(--serif); font-size: 14.5px; color: var(--ink); }
+  .mail-body .hl { background: var(--ok-soft); color: var(--ok); border-radius: 4px; padding: 0 4px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .mail-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .inbox-card h4 { font-size: 21px; margin-bottom: 8px; }
+  .inbox-card p { font-size: 15px; color: var(--ink-soft); line-height: 1.6; }
+  .inbox-sources { margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .inbox-sources div { padding-left: 16px; border-left: 1px solid var(--ink); font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; }
+  .inbox-sources b { display: block; font-family: var(--serif); font-weight: 500; font-size: 18px; color: var(--ink); margin-bottom: 4px; }
   /* ---------------- friction statement ---------------- */
   .friction { padding: 100px 0; }
   .friction-wrap { max-width: 760px; text-align: center; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
@@ -390,7 +408,7 @@
     .hero-sub { font-size: 16px; }
     .hero-visual-inner { grid-template-columns: 1fr; }
     .hero-visual-side, .client-side { padding: 0 22px 22px; }
-    .steps, .feat-grid, .mock-shots, .ai-grid, .ai-trust, .price-defs, .sec-grid { grid-template-columns: 1fr; }
+    .steps, .feat-grid, .mock-shots, .inbox-flow, .inbox-sources, .ai-grid, .ai-trust, .price-defs, .sec-grid { grid-template-columns: 1fr; }
     .price-beta { margin-top: -16px; }
     .compare { padding: 16px 0 64px; }
     .security { padding: 8px 0 64px; }
@@ -402,6 +420,8 @@
     .pricing { padding: 24px 0 64px; }
     .price-teams { flex-direction: column; align-items: flex-start; }
     .ai-section { padding: 24px 0 64px; }
+    .inbox { padding: 8px 0 64px; }
+    .inbox-card:not(:last-child)::after { content: "\2193"; right: auto; left: 50%; top: auto; bottom: -22px; transform: translateX(-50%); }
     .mock-panel { min-height: 0; }
     .faq-layout { grid-template-columns: 1fr; gap: 30px; }
     .final-cta { margin: 0 16px 60px; padding: 56px 24px; }
@@ -430,7 +450,10 @@
     .hero h1 { font-size: 38px; }
     .doc-mock { padding: 22px 20px; font-size: 14px; }
     .feat-grid { gap: 14px; }
-    .ai-card, .feat-card, .price-card { padding: 24px 20px; }
+    .ai-card, .feat-card, .price-card, .inbox-card { padding: 24px 20px; }
+    .inbox-flow { gap: 24px; }
+    .inbox .section-head h2 br { display: none; }
+    .mail-mock { padding: 12px 14px; }
     .price-grid { grid-template-columns: 1fr; }
     .price-teams { padding: 22px 20px; }
     .ai-card .ai-counter { padding: 14px 14px; }
@@ -455,6 +478,7 @@
       <span class="word">Rotely<span class="tld">.ai</span></span>
     </a>
     <div class="nav-links">
+      <a href="#inbox">From your inbox</a>
       <a href="#how">How it works</a>
       <a href="#redline">Redlining</a>
       <a href="#signing">Signing</a>
@@ -473,10 +497,10 @@
   <div class="wrap">
     <div class="label hero-eyebrow">Draft it. Redline it. Sign it. All in one place.</div>
     <h1>Contracts that <em>negotiate</em><br>themselves.</h1>
-    <p class="hero-sub">Signing tools only show up at the end. Rotely runs the whole deal: it drafts from your own contracts, lets clients redline right in the document, accepts every change that fits your rules, and answers the rest with a counter that sounds like you. You step in only for the asks that matter, then it&rsquo;s signed in the same tab.</p>
+    <p class="hero-sub">Signing tools only show up at the end. Rotely runs the whole deal: it drafts from your own contracts (start from a quick form, a client&rsquo;s email, or your notes), lets clients redline right in the document, accepts every change that fits your rules, and answers the rest with a counter that sounds like you. You step in only for the asks that matter, then it&rsquo;s signed in the same tab.</p>
     <div class="hero-actions">
       <a href="#waitlist" class="pill-btn js-waitlist-cta"><span class="plus">+</span> Join the waitlist</a>
-      <a href="#how" class="pill-btn ghost">See how it works</a>
+      <a href="#inbox" class="pill-btn ghost">See it work from your inbox</a>
     </div>
     <div class="hero-note">For anyone who sends the same contracts again and again. Drafting and redlining are free. Now in private beta.</div>
     <div class="hero-visual">
@@ -507,6 +531,52 @@
     <p class="friction-sub">You know it clause by clause. What eats your time is retyping it. Then comes the chase: Google Docs for one client, Word for another, redlines buried in an email thread, and one more tool just to get it signed.</p>
   </div>
 </section>
+<section class="inbox" id="inbox">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">Start where the deal starts</div>
+      <h2>Forward an email. <em>Get a contract.</em><br>Send it without leaving your inbox.</h2>
+      <p>Every deal starts as an email or a few lines of notes. Hand that to Rotely and it drafts the contract from your own master document, fills in the names, dates and dollar amounts, and gets it out the door. Draft, send, sign: you can run the whole thing from your email.</p>
+    </div>
+    <div class="inbox-flow">
+      <div class="inbox-card">
+        <div class="inbox-step">1 &middot; Forward it</div>
+        <div class="mail-mock">
+          <div class="mail-row"><b>To</b><span>Your Rotely drafting address</span></div>
+          <div class="mail-row"><b>Fwd</b><span>Re: Kicking off in March</span></div>
+          <div class="mail-body">&ldquo;Looking forward to it! Billing goes to <span class="hl">Swift Enterprises LLC</span>, we&rsquo;d like to start <span class="hl">March 3</span>, and <span class="hl">$12,000</span> a month works for us.&rdquo;</div>
+        </div>
+        <h4>Your client&rsquo;s email, or your notes</h4>
+        <p>Forward the thread, paste it in, or jot down &ldquo;Swift, $12k/mo, starts March 3.&rdquo; Rough is fine.</p>
+      </div>
+      <div class="inbox-card">
+        <div class="inbox-step">2 &middot; It drafts itself</div>
+        <div class="mail-mock">
+          <div class="mail-row"><b>Picked</b><span>Services Agreement</span></div>
+          <div class="mail-body">Client: <span class="hl">Swift Enterprises LLC</span><br>Start date: <span class="hl">March 3, 2027</span><br>Monthly fee: <span class="hl">$12,000</span></div>
+          <div class="ai-counter-why" style="margin-top:8px;">Filled 6 of 7 fields. The payment term was left for you.</div>
+        </div>
+        <h4>Your contract, already filled in</h4>
+        <p>Rotely picks the right master document and fills every field it can find. Your wording, your formatting, nothing retyped. You check it before anything goes out.</p>
+      </div>
+      <div class="inbox-card">
+        <div class="inbox-step">3 &middot; Send it from your email</div>
+        <div class="mail-mock">
+          <div class="mail-row"><b>Draft</b><span>Services Agreement &middot; Swift</span></div>
+          <div class="mail-body">Ready when you are.</div>
+          <div class="mail-actions"><span class="mini-pill">Send for review</span><span class="mini-pill accent">Send for signature</span></div>
+        </div>
+        <h4>Out the door, no app to open</h4>
+        <p>Send it to your client for redlines or straight to signature, right from your email. From a forwarded thread to a signed contract, without ever opening a blank document.</p>
+      </div>
+    </div>
+    <div class="inbox-sources">
+      <div><b>No template hunting</b>Rotely matches the request to the right master document for you.</div>
+      <div><b>Notes count too</b>Half a sentence from a call is enough to start a draft.</div>
+      <div><b>Still your call</b>Every field is shown for you to check, and nothing is sent until you say so.</div>
+    </div>
+  </div>
+</section>
 <section class="compare" id="compare">
   <div class="wrap">
     <div class="section-head">
@@ -521,6 +591,7 @@
       <tbody>
         <tr><td><span class="stage">Draft</span>Turn your own contract into a reusable template</td><td class="col no">&mdash;</td><td class="col us yes">&#10003;</td></tr>
         <tr><td><span class="stage">Draft</span>Draft a contract from a client&rsquo;s email or your notes</td><td class="col no">&mdash;</td><td class="col us yes">&#10003;</td></tr>
+        <tr><td><span class="stage">Draft</span>Draft and send it all from your email</td><td class="col no">&mdash;</td><td class="col us yes">&#10003;</td></tr>
         <tr><td><span class="stage">Negotiate</span>Clients redline right in the document, with comments</td><td class="col no">&mdash;</td><td class="col us yes">&#10003;</td></tr>
         <tr><td><span class="stage">Negotiate</span>Changes inside your rules are accepted automatically</td><td class="col no">&mdash;</td><td class="col us yes">&#10003;</td></tr>
         <tr><td><span class="stage">Negotiate</span>Suggested counters based on how you&rsquo;ve countered before</td><td class="col no">&mdash;</td><td class="col us yes">&#10003;</td></tr>
@@ -973,6 +1044,10 @@
         <div class="faq-item open">
           <button class="faq-q"><span class="qtext">Is this just a Word template?</span><span class="icon">+</span></button>
           <div class="faq-a"><div class="faq-a-inner">No. A Word template still makes you find-and-replace by hand and hope you didn't miss a spot. Rotely marks the exact fields once, then fills them through a form. Anything else you want to change, you click into the document and edit it in place.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span class="qtext">Can I really do it all from my email?</span><span class="icon">+</span></button>
+          <div class="faq-a"><div class="faq-a-inner">Yes. Forward a client&rsquo;s email or your notes to your personal drafting address, and Rotely drafts the contract from the right master document. From there you can send it for review or signature from your email too. You always see what was filled in before anything goes out.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q"><span class="qtext">What file types can I upload?</span><span class="icon">+</span></button>
