@@ -116,7 +116,6 @@
   .pill-btn .plus { display: none; }
   /* ---------------- hero ---------------- */
   .hero { padding: 96px 0 40px; }
-  .hero-eyebrow { margin-bottom: 24px; }
   .hero h1 { font-size: 72px; max-width: 900px; }
   .hero h1 em { color: var(--ink-soft); }
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
@@ -153,6 +152,24 @@
   .side-card { background: var(--paper-white); border: 1px solid var(--line-soft); border-radius: var(--radius-sm); padding: 16px 18px; }
   .side-card .t { font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
   .side-card .d { color: var(--ink); font-size: 15px; font-weight: 500; }
+  /* hero document: notes sit in the margin beside the clause they explain */
+  .hero-doc { padding: 26px; }
+  .hd-page { background: var(--paper-white); border: 1px solid var(--line-soft); border-radius: var(--radius-sm); padding: 30px 26px 14px 40px; }
+  .hd-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-bottom: 14px; margin-bottom: 20px; border-bottom: 1px solid var(--line-soft); }
+  .hd-head .doc-title { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .hd-meta { font-size: 13px; color: var(--muted); }
+  .hd-row { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 40px; align-items: start; margin-bottom: 18px; }
+  .hd-clause { font-family: var(--serif); font-size: 16.5px; line-height: 1.65; color: var(--ink); }
+  .hd-clause.quiet { color: var(--ink-soft); }
+  .hd-num { font-family: "Inter", sans-serif; font-size: 12px; font-weight: 500; color: var(--muted); margin-right: 8px; }
+  .hd-note { position: relative; background: var(--cream); border: 1px solid var(--line-soft); border-left: 3px solid var(--ok); border-radius: 8px; padding: 10px 13px 11px; font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); }
+  .hd-note.ask { border-left-color: var(--del); }
+  .hd-note::before { content: ""; position: absolute; left: -41px; top: 15px; width: 38px; border-top: 1px dashed var(--line); }
+  .hd-note-top { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; margin-bottom: 4px; }
+  .hd-note-top b { color: var(--ink); font-weight: 600; }
+  .hd-note-top span { color: var(--ok); font-weight: 500; }
+  .hd-note.ask .hd-note-top span { color: var(--del); }
+  .hd-note .mail-actions { margin-top: 9px; }
   /* ---------------- inbox (draft + send from email) ---------------- */
   .inbox { padding: 24px 0 96px; }
   .inbox-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -168,7 +185,7 @@
   .mail-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
   .inbox-card h4 { font-size: 21px; margin-bottom: 8px; }
   .inbox-card p { font-size: 15px; color: var(--ink-soft); line-height: 1.6; }
-  .inbox-sources { margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .inbox-sources { margin-top: 28px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .inbox-sources div { padding-left: 16px; border-left: 1px solid var(--ink); font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; }
   .inbox-sources b { display: block; font-family: var(--serif); font-weight: 500; font-size: 18px; color: var(--ink); margin-bottom: 4px; }
   /* ---------------- friction statement ---------------- */
@@ -382,9 +399,7 @@
   .faq a { text-underline-offset: 3px; }
   /* ---------------- final CTA ---------------- */
   .final-cta { background: var(--paper-white); border: 1px solid var(--line); border-radius: 24px; max-width: 1116px; margin: 0 auto 90px; padding: 90px 60px; position: relative; overflow: hidden; text-align: center; }
-  .final-cta .wordmark-bg { position: absolute; bottom: -70px; left: 50%; transform: translateX(-50%); font-family: var(--serif); font-weight: 400; font-size: 280px; color: rgba(28,27,25,0.035); white-space: nowrap; letter-spacing: -0.03em; pointer-events: none; }
   .final-cta h2 { color: var(--ink); font-size: 52px; max-width: 680px; margin: 0 auto; position: relative; }
-  .final-cta h2 em { color: var(--ink-soft); }
   .final-cta p { color: var(--ink-soft); margin: 18px auto 0; font-size: 16.5px; line-height: 1.6; max-width: 600px; position: relative; }
   .final-cta .hero-actions { justify-content: center; margin-top: 34px; position: relative; }
   /* ---------------- footer ---------------- */
@@ -408,6 +423,10 @@
     .hero-sub { font-size: 16px; }
     .hero-visual-inner { grid-template-columns: 1fr; }
     .hero-visual-side, .client-side { padding: 0 22px 22px; }
+    .hero-doc { padding: 14px; }
+    .hd-page { padding: 22px 20px 6px; }
+    .hd-row { grid-template-columns: 1fr; gap: 10px; margin-bottom: 22px; }
+    .hd-note::before { display: none; }
     .steps, .feat-grid, .mock-shots, .inbox-flow, .inbox-sources, .ai-grid, .ai-trust, .price-defs, .sec-grid { grid-template-columns: 1fr; }
     .price-beta { margin-top: -16px; }
     .compare { padding: 16px 0 64px; }
@@ -492,30 +511,26 @@
 </nav>
 <header class="hero">
   <div class="wrap">
-    <div class="label hero-eyebrow">Draft it. Redline it. Sign it. All in one place.</div>
     <h1>Contracts that <em>negotiate</em><br>themselves.</h1>
-    <p class="hero-sub">Signing tools only show up at the end. Rotely runs the whole deal: it drafts from your own contracts (start from a quick form, a client&rsquo;s email, or your notes), lets clients redline right in the document, accepts every change that fits your rules, and answers the rest with a counter that sounds like you. You step in only for the asks that matter, then it&rsquo;s signed in the same tab.</p>
+    <p class="hero-sub">Rotely drafts from your own contracts and works through your client&rsquo;s redlines, accepting any change that fits the rules you set. You only hear about the asks that need you.</p>
     <div class="hero-actions">
       <a href="#waitlist" class="pill-btn js-waitlist-cta"><span class="plus">+</span> Join the waitlist</a>
       <a href="#inbox" class="pill-btn ghost">See it work from your inbox</a>
     </div>
     <div class="hero-note">For anyone who sends the same contracts again and again. Drafting and redlining are free. Now in private beta.</div>
-    <div class="hero-visual">
-      <div class="hero-visual-inner">
-        <div class="doc-mock">
-          <div class="para doc-title">SERVICES AGREEMENT</div>
-          <div class="dline w50"></div>
-          <div class="para">Payment is due within <span class="redline-del">30</span><span class="redline-ins">45</span> days of the invoice date.</div>
-          <div class="dline w90"></div>
-          <div class="para">Client receives a one-time discount of <span class="redline-del">5%</span><span class="redline-ins">15%</span> on the initial order.</div>
-          <div class="dline w70"></div>
-          <div class="para">Signed by <span class="tok">{{client_name}}</span> and Provider on the dates below.</div>
-          <div class="dline w50"></div>
+    <div class="hero-visual hero-doc">
+      <div class="hd-page">
+        <div class="hd-head"><span class="doc-title">Services Agreement</span><span class="hd-meta">Swift Enterprises LLC &middot; client redlines, round 2</span></div>
+        <div class="hd-row">
+          <p class="hd-clause"><span class="hd-num">4.1</span>Payment is due within <span class="redline-del">30</span><span class="redline-ins">45</span> days of the invoice date.</p>
+          <div class="hd-note"><div class="hd-note-top"><b>Rotely</b><span>Accepted</span></div>Your limit is 60 days, so this one was accepted without asking you.</div>
         </div>
-        <div class="hero-visual-side">
-          <div class="side-card"><div class="t">Payment term <span class="sig-tag">Auto-accepted</span></div><div class="d">30 &rarr; 45 days fits your rule, so you never see it</div></div>
-          <div class="side-card"><div class="t">Discount <span class="sig-tag warn">Outside your range</span></div><div class="d">Client asked for 15%. Suggested counter: 10%, the top of your guardrail</div></div>
-          <div class="side-card"><div class="t">Agreed <span class="sig-tag pending">Ready to sign</span></div><div class="d">Sent for a legally binding signature in the same tab</div></div>
+        <div class="hd-row">
+          <p class="hd-clause quiet"><span class="hd-num">4.2</span>Invoices unpaid after the due date accrue interest at one percent (1%) per month.</p>
+        </div>
+        <div class="hd-row">
+          <p class="hd-clause"><span class="hd-num">5.3</span>Client receives a one-time discount of <span class="redline-del">5%</span><span class="redline-ins">15%</span> on the initial order.</p>
+          <div class="hd-note ask"><div class="hd-note-top"><b>Rotely</b><span>Needs you</span></div>You cap discounts at 10%, and you&rsquo;ve met clients there before.<div class="mail-actions"><span class="mini-pill accent">Counter at 10%</span><span class="mini-pill">Reply myself</span></div></div>
         </div>
       </div>
     </div>
@@ -523,16 +538,14 @@
 </header>
 <section class="friction">
   <div class="wrap friction-wrap">
-    <div class="label">The insight</div>
-    <h2 class="friction-h">Every contract you draft is the same contract.<br>The names change. The dates change. <em>The words don't.</em></h2>
+    <h2 class="friction-h">Most contracts you send are the same contract with a new name, date and price on it.</h2>
     <p class="friction-sub">You know it clause by clause. What eats your time is retyping it. Then comes the chase: Google Docs for one client, Word for another, redlines buried in an email thread, and one more tool just to get it signed.</p>
   </div>
 </section>
 <section class="inbox" id="inbox">
   <div class="wrap">
     <div class="section-head">
-      <div class="label">Start where the deal starts</div>
-      <h2>Forward an email. <em>Get a contract.</em><br>Send it without leaving your inbox.</h2>
+      <h2>Forward the client&rsquo;s email and get a draft back.</h2>
       <p>Every deal starts as an email or a few lines of notes. Hand that to Rotely and it drafts the contract from your own master document, fills in the names, dates and dollar amounts, and gets it out the door. Draft, send, sign: you can run the whole thing from your email.</p>
     </div>
     <div class="inbox-flow">
@@ -569,7 +582,6 @@
     </div>
     <div class="inbox-sources">
       <div><b>No template hunting</b>Rotely matches the request to the right master document for you.</div>
-      <div><b>Notes count too</b>Half a sentence from a call is enough to start a draft.</div>
       <div><b>Still your call</b>Every field is shown for you to check, and nothing is sent until you say so.</div>
     </div>
   </div>
@@ -577,8 +589,7 @@
 <section class="compare" id="compare">
   <div class="wrap">
     <div class="section-head">
-      <div class="label">Not just a signing tool</div>
-      <h2>Signing is the last five minutes.<br><em>Rotely handles the weeks before it.</em></h2>
+      <h2>How Rotely compares with a signing tool</h2>
       <p>E-signature apps start once the contract is done. Most of the work happens earlier, in drafting and in the back-and-forth.</p>
     </div>
     <table class="compare-table">
@@ -630,7 +641,7 @@
     <div class="journey-rail"><div class="journey-node">2</div><div class="journey-rail-line"></div></div>
     <div class="journey-content">
     <div class="section-head">
-      <h2>Click into it. Edit it like a person, not a form.</h2>
+      <h2>Edit the document itself.</h2>
       <p>Insert a sentence, fix a typo, swap a clause, right in the document itself. Stage as many changes as you want and watch every one of them land in place before you save anything.</p>
     </div>
     <div class="hero-visual" style="margin-top:0;">
@@ -800,8 +811,7 @@
 <section class="ai-section" id="ai">
   <div class="wrap">
     <div class="section-head">
-      <div class="label">AI in Rotely</div>
-      <h2>AI that reads the fine print, so you don&rsquo;t have to.</h2>
+      <h2>What the AI does, and where you stay in charge</h2>
       <p>Rotely uses AI where the slow reading happens: turning a request into a draft, weighing a client&rsquo;s redlines, and catching the dates buried in a signed contract. It suggests. You decide.</p>
     </div>
     <div class="ai-grid">
@@ -891,9 +901,8 @@
 <section class="pricing" id="pricing">
   <div class="wrap">
     <div class="section-head">
-      <div class="label">Pricing</div>
-      <h2>Draft and redline free.<br><em>Pay only when it&rsquo;s sent for signature.</em></h2>
-      <p>Templates, drafting, and client redlining are free on every plan. You only pay when a document goes out for signature.</p>
+      <h2>Pricing</h2>
+      <p>Templates, drafting and client redlining are free on every plan. You pay when a document goes out for signature.</p>
     </div>
     <p class="price-beta"><b>Rotely is in private beta.</b> Pick the plan you&rsquo;d choose and join the waitlist for it. Nothing is charged today, and plans start at launch.</p>
     <div class="price-toggle" role="group" aria-label="Billing period">
@@ -999,7 +1008,7 @@
   <div class="wrap">
     <div class="section-head">
       <div class="label">Security &amp; privacy</div>
-      <h2>Your contracts stay <em>yours.</em></h2>
+      <h2>How we handle your contracts</h2>
       <p>You&rsquo;re trusting Rotely with signed agreements and signers&rsquo; IDs. Here&rsquo;s how we treat them.</p>
     </div>
     <div class="sec-grid">
@@ -1088,8 +1097,7 @@
   </div>
 </section>
 <section class="final-cta">
-  <div class="wordmark-bg">Rotely</div>
-  <h2>Stop reading every redline.<br>Let <em>your rules</em> do it.</h2>
+  <h2>Set your rules once and let Rotely handle the routine redlines.</h2>
   <p>Upload a contract once. Rotely drafts it, handles the routine back-and-forth, and gets it signed, so you only step in when it matters.</p>
   <div class="hero-actions">
     <a href="#waitlist" class="pill-btn on-dark js-waitlist-cta"><span class="plus">+</span> Join the waitlist</a>
