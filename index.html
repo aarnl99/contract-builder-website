@@ -481,6 +481,13 @@
     .waitlist-card { max-height: calc(100vh - 24px); padding: 40px 18px 24px; }
     .waitlist-input { font-size: 16px; }
   }
+
+.who { padding: 88px 0 8px; }
+.who .step { display: flex; flex-direction: column; }
+.who .step > p:first-of-type { margin-bottom: 18px; }
+.who-ex { margin-top: auto; min-height: 96px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-soft); }
+.who-ex span { display: block; margin-bottom: 4px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.who-demo { margin-top: 48px; }
 </style>
 <script>
   // Every load starts fresh at the top: no remembered scroll position or hash jump.
@@ -497,6 +504,7 @@
       <span class="word">Rotely<span class="tld">.ai</span></span>
     </a>
     <div class="nav-links">
+<a href="#who">Who it&rsquo;s for</a>
       <a href="#how">How it works</a>
       <a href="#inbox">From your inbox</a>
       <a href="#ai">AI</a>
@@ -515,27 +523,65 @@
     <p class="hero-sub">Rotely drafts from your own contracts and works through your client&rsquo;s redlines, accepting any change that fits the rules you set. You only hear about the asks that need you.</p>
     <div class="hero-actions">
       <a href="#waitlist" class="pill-btn js-waitlist-cta"><span class="plus">+</span> Join the waitlist</a>
-      <a href="#inbox" class="pill-btn ghost">See it work from your inbox</a>
+      <a href="#who" class="pill-btn ghost">See who it&rsquo;s for</a>
     </div>
-    <div class="hero-note">For anyone who sends the same contracts again and again. Drafting and redlining are free. Now in private beta.</div>
+    <div class="hero-note">Built for freelancers, small businesses and early-stage startups who send the same contracts again and again. Drafting and redlining are free. Now in private beta.</div>
     <div class="hero-visual hero-doc">
       <div class="hd-page">
         <div class="hd-head"><span class="doc-title">Services Agreement</span><span class="hd-meta">Swift Enterprises LLC &middot; client redlines, round 2</span></div>
         <div class="hd-row">
           <p class="hd-clause"><span class="hd-num">4.1</span>Payment is due within <span class="redline-del">30</span><span class="redline-ins">45</span> days of the invoice date.</p>
-          <div class="hd-note"><div class="hd-note-top"><b>Rotely</b><span>Accepted</span></div>Your limit is 60 days, so this one was accepted without asking you.</div>
+          <div class="hd-note"><div class="hd-note-top"><b>Rolly</b><span>Accepted</span></div>Your limit is 60 days, so this one was accepted without asking you.</div>
         </div>
         <div class="hd-row">
           <p class="hd-clause quiet"><span class="hd-num">4.2</span>Invoices unpaid after the due date accrue interest at one percent (1%) per month.</p>
         </div>
         <div class="hd-row">
           <p class="hd-clause"><span class="hd-num">5.3</span>Client receives a one-time discount of <span class="redline-del">5%</span><span class="redline-ins">15%</span> on the initial order.</p>
-          <div class="hd-note ask"><div class="hd-note-top"><b>Rotely</b><span>Needs you</span></div>You cap discounts at 10%, and you&rsquo;ve met clients there before.<div class="mail-actions"><span class="mini-pill accent">Counter at 10%</span><span class="mini-pill">Reply myself</span></div></div>
+          <div class="hd-note ask"><div class="hd-note-top"><b>Rolly</b><span>Needs you</span></div>You cap discounts at 10%, and you&rsquo;ve met clients there before.<div class="mail-actions"><span class="mini-pill accent">Counter at 10%</span><span class="mini-pill">Reply myself</span></div></div>
         </div>
       </div>
     </div>
   </div>
 </header>
+<section class="who" id="who">
+<div class="wrap">
+<div class="section-head">
+<div class="label">Who it&rsquo;s for</div>
+<h2>Built for people who sign contracts without a legal team.</h2>
+</div>
+<div class="steps">
+<div class="step">
+<h3>Freelancers and consultants</h3>
+<p>Client agreements, statements of work and NDAs, without a lawyer on call.</p>
+<p class="who-ex"><span>A typical redline</span>&ldquo;Can we make the payment terms net 60?&rdquo;</p>
+</div>
+<div class="step">
+<h3>Small businesses</h3>
+<p>Service agreements and vendor or customer terms you send again and again.</p>
+<p class="who-ex"><span>A typical redline</span>A customer asks for a 15% discount on the first order.</p>
+</div>
+<div class="step">
+<h3>Early-stage startups</h3>
+<p>Contractor agreements, NDAs and customer or vendor contracts, with every redline in one place.</p>
+<p class="who-ex"><span>A typical redline</span>A contractor asks to keep ownership of their own tools.</p>
+</div>
+</div>
+<div class="hero-visual hero-doc who-demo">
+<div class="hd-page">
+<div class="hd-head"><span class="doc-title">Contractor Agreement</span><span class="hd-meta">Northfield Design &middot; contractor redlines, round 1</span></div>
+<div class="hd-row">
+<p class="hd-clause"><span class="hd-num">3.1</span>Either party may end this agreement with <span class="redline-del">14</span><span class="redline-ins">30</span> days&rsquo; written notice.</p>
+<div class="hd-note"><div class="hd-note-top"><b>Rolly</b><span>Accepted</span></div>Your limit is 30 days, so this one was accepted without asking you.</div>
+</div>
+<div class="hd-row">
+<p class="hd-clause"><span class="hd-num">7.2</span>The Company owns all work made under this agreement, <span class="redline-ins">except the Contractor&rsquo;s pre-existing tools</span>.</p>
+<div class="hd-note ask"><div class="hd-note-top"><b>Rolly</b><span>Needs you</span></div>This changes who owns the work, so it&rsquo;s flagged for you and for a lawyer, not countered automatically.<div class="mail-actions"><span class="mini-pill accent">Review the change</span><span class="mini-pill">Reply myself</span></div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section class="friction">
   <div class="wrap friction-wrap">
     <h2 class="friction-h">Most contracts you send are the same contract with a new name, date and price on it.</h2>
@@ -812,7 +858,7 @@
   <div class="wrap">
     <div class="section-head">
       <h2>What the AI does, and where you stay in charge</h2>
-      <p>Rotely uses AI where the slow reading happens: turning a request into a draft, weighing a client&rsquo;s redlines, and catching the dates buried in a signed contract. It suggests. You decide.</p>
+      <p>Rolly uses AI where the slow reading happens: turning a request into a draft, weighing a client&rsquo;s redlines, and catching the dates buried in a signed contract. Rolly suggests. You decide.</p>
     </div>
     <div class="ai-grid">
       <div class="ai-card">
@@ -901,8 +947,8 @@
 <section class="pricing" id="pricing">
   <div class="wrap">
     <div class="section-head">
-      <h2>Pricing</h2>
-      <p>Templates, drafting and client redlining are free on every plan. You pay when a document goes out for signature.</p>
+      <h2>Priced for one person.</h2>
+      <p>Tools with negotiation built in usually cost businesses hundreds of dollars a month. Rotely starts at $9.99. Templates, drafting and client redlining are free on every plan, and you pay when a document goes out for signature.</p>
     </div>
     <p class="price-beta"><b>Rotely is in private beta.</b> Pick the plan you&rsquo;d choose and join the waitlist for it. Nothing is charged today, and plans start at launch.</p>
     <div class="price-toggle" role="group" aria-label="Billing period">
@@ -914,9 +960,9 @@
         <h4>Pay as you go</h4>
         <p class="price-for">For the occasional contract. No subscription.</p>
         <div class="price-amount"><span class="num">$0</span><span class="per">/month</span></div>
-        <p class="price-note">First send free, then $5 per send</p>
+        <p class="price-note">$5 per send, no subscription</p>
         <ul class="price-list">
-          <li><b>1 free send</b>, then $5 each</li>
+          <li><b>$5 per send</b>, no subscription</li>
           <li>Unlimited templates and drafts</li>
           <li>Client redlining and comments</li>
           <li class="no">No AI features</li>
@@ -931,7 +977,7 @@
         <ul class="price-list">
           <li><b>5 sends</b> a month</li>
           <li>Extra sends $3 each</li>
-          <li><b>25 AI asks</b> a month</li>
+          <li><b>50 AI credits</b> a month</li>
           <li>Unlimited templates and drafts</li>
           <li>Client redlining and comments</li>
         </ul>
@@ -946,7 +992,7 @@
         <ul class="price-list">
           <li><b>20 sends</b> a month</li>
           <li>Extra sends $3 each</li>
-          <li><b>50 AI asks</b> a month</li>
+          <li><b>150 AI credits</b> a month</li>
           <li>Unlimited templates and drafts</li>
           <li>Client redlining and comments</li>
         </ul>
@@ -959,7 +1005,7 @@
         <p class="price-note" data-monthly="or $799.90/year billed annually" data-annual="Works out to $66.66/month">or $799.90/year billed annually</p>
         <ul class="price-list">
           <li><b>Unlimited sends</b>*</li>
-          <li><b>100 AI asks</b> a month</li>
+          <li><b>400 AI credits</b> a month</li>
           <li><b>Slack bot</b> (coming soon)</li>
           <li>Unlimited templates and drafts</li>
           <li>Client redlining and comments</li>
@@ -976,7 +1022,7 @@
     </div>
     <div class="price-defs">
       <div><b>What&rsquo;s a send?</b>One document sent out for signature, no matter how many people sign it.</div>
-      <div><b>What&rsquo;s an AI ask?</b>Each time the AI drafts a clause, suggests a redline counter, or drafts a document from your notes. Redline summaries and renewal tracking are included on paid plans and don&rsquo;t use asks.</div>
+      <div><b>What&rsquo;s an AI credit?</b>Every AI action uses credits, and bigger jobs use more. A counter suggestion uses 1, a summary of a redline round uses 3, and a full draft from your notes uses 5 to 8. Your plan&rsquo;s credits reset each month, and you can see what&rsquo;s left in Settings.</div>
       <div><b>*Fair use</b>Unlimited is for one user and covers normal business use. For shared accounts, see Teams.</div>
     </div>
   </div>
@@ -990,7 +1036,15 @@
       <form id="waitlist-form" class="waitlist-form" novalidate>
         <input type="text" name="name" id="waitlist-name" class="waitlist-input" placeholder="Your name (optional)" autocomplete="name" aria-label="Your name (optional)" />
         <input type="email" name="email" id="waitlist-email" class="waitlist-input" placeholder="you@company.com" autocomplete="email" aria-label="Email address" required />
-        <label class="waitlist-field-label" for="waitlist-plan">Which plan would you choose?</label>
+        <label class="waitlist-field-label" for="waitlist-audience">I am a&hellip;</label>
+<select name="audience" id="waitlist-audience" class="waitlist-input waitlist-select">
+<option value="">Choose one (optional)</option>
+<option value="Freelancer or consultant">Freelancer or consultant</option>
+<option value="Small business owner">Small business owner</option>
+<option value="Startup founder">Startup founder</option>
+<option value="Something else">Something else</option>
+</select>
+<label class="waitlist-field-label" for="waitlist-plan">Which plan would you choose?</label>
         <select name="plan" id="waitlist-plan" class="waitlist-input waitlist-select">
           <option value="Not sure yet">Not sure yet</option>
           <option value="Pay as you go">Pay as you go ($5 per send)</option>
@@ -1048,6 +1102,14 @@
         <p>Can't find what you're looking for? <a href="mailto:closeit@rotely.ai">Reach out</a> and we'll get back to you.</p>
       </div>
       <div class="faq-list">
+<div class="faq-item">
+<button class="faq-q"><span class="qtext">Is Rotely right for a small team or startup?</span><span class="icon">+</span></button>
+<div class="faq-a"><div class="faq-a-inner">Yes, if you send the same kinds of contracts again and again: contractor agreements, NDAs, customer and vendor terms. For one person or a handful of people, Rotely is built to be simple and low cost. If you need approvals across a large legal team, it isn&rsquo;t the right tool yet.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-q"><span class="qtext">Is Rotely a law firm?</span><span class="icon">+</span></button>
+<div class="faq-a"><div class="faq-a-inner">No. Rotely is software, and Rolly is its AI assistant. Neither gives legal advice or replaces a lawyer. Changes to liability, ownership and termination are flagged so you can get a lawyer to look at them.</div></div>
+</div>
         <div class="faq-item open">
           <button class="faq-q"><span class="qtext">Is this just a Word template?</span><span class="icon">+</span></button>
           <div class="faq-a"><div class="faq-a-inner">No. A Word template still makes you find-and-replace by hand and hope you didn't miss a spot. Rotely marks the exact fields once, then fills them through a form. Anything else you want to change, you click into the document and edit it in place.</div></div>
@@ -1082,7 +1144,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-q"><span class="qtext">How does pricing work?</span><span class="icon">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner">Drafting, templates, and redlining are always free. You only pay when you send a document out for signature. One send covers one document, however many people sign it. Pay as you go at $5 per send (your first one is free), or pick a monthly plan with sends and AI asks included. Extra sends on a plan are $3 each. See <a href="#pricing">pricing</a>.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Drafting, templates, and redlining are always free. You only pay when you send a document out for signature. One send covers one document, however many people sign it. Pay as you go at $5 per send (your first one is free), or pick a monthly plan with sends and AI credits included. Extra sends on a plan are $3 each. See <a href="#pricing">pricing</a>.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q"><span class="qtext">Can I use Rotely today?</span><span class="icon">+</span></button>
@@ -1125,7 +1187,8 @@
       <div class="footer-copy">© 2026 Rotely.ai</div>
     </div>
     <div class="footer-contact">Questions? Email us at <a href="mailto:closeit@rotely.ai">closeit@rotely.ai</a></div>
-    <div class="footer-legal"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></div>
+    <div class="footer-contact">Rotely is software, not a law firm, and does not provide legal advice.</div>
+<div class="footer-legal"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></div>
   </div>
 </footer>
 <script>
@@ -1215,6 +1278,7 @@
     body.append("name", name);
     body.append("email", email);
     body.append("plan", document.getElementById("waitlist-plan").value);
+        body.append("audience", document.getElementById("waitlist-audience").value);
     var billingBtn = document.querySelector('.price-toggle button[aria-pressed="true"]');
     body.append("billing", billingBtn ? billingBtn.dataset.billing : "monthly");
 
